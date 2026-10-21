@@ -7,6 +7,7 @@ platforms: ["PC", "PS5", "Xbox Series X|S"]
 release: "10 декабря 2020"
 status: released
 cover: ../../img/games/cyberpunk-2077/cover.jpg
+banner: ../../img/games/cyberpunk-2077/banner.jpg
 links:
   site: "https://www.cyberpunk.net/"
 draft: false

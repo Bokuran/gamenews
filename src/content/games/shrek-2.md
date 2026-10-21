@@ -9,6 +9,7 @@ release: "10 ноября 2026"
 status: remaster
 aliases: ["Shrek"]
 cover: ../../img/games/shrek-2/cover.jpg
+banner: ../../img/games/shrek-2/banner.jpg
 draft: false
 ---
 

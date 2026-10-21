@@ -8,6 +8,7 @@ release: "оригинал — 1997; Intergrade в Game Pass — 29 октябр
 status: released
 aliases: ["Final Fantasy"]
 cover: ../../img/games/final-fantasy-vii/cover.jpg
+banner: ../../img/games/final-fantasy-vii/banner.jpg
 draft: false
 ---
 

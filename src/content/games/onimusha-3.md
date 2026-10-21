@@ -8,6 +8,7 @@ release: "не объявлена"
 status: announced
 aliases: ["Onimusha"]
 cover: ../../img/games/onimusha-3/cover.jpg
+banner: ../../img/games/onimusha-3/banner.jpg
 draft: false
 ---
 

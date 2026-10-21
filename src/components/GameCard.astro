@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { item, now = new Date() } = Astro.props;
-const { game, posts, latest, cover } = item;
+const { game, posts, latest, banner } = item;
 const { title, description, genre, developer, status } = game.data;
 
 const statusLabel = GAME_STATUS[status] ?? status;
@@ -22,10 +22,10 @@ const meta = [genre, developer].filter(Boolean).join(' · ');
 <article class="game-card">
   <a class="game-card__media" href={gameUrl(game.id)} tabindex="-1" aria-hidden="true">
     {
-      cover ? (
+      banner ? (
         <Image
-          src={asImageMetadata(cover)}
-          widths={[320, 640]}
+          src={asImageMetadata(banner)}
+          widths={[320, 640, 960]}
           sizes="(max-width: 700px) 100vw, 360px"
           alt=""
           loading="lazy"

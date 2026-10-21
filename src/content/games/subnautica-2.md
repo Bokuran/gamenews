@@ -8,6 +8,7 @@ platforms: ["PC", "Xbox Series X|S"]
 release: "ранний доступ с мая 2026"
 status: early-access
 cover: ../../img/games/subnautica-2/cover.jpg
+banner: ../../img/games/subnautica-2/banner.jpg
 links:
   site: "https://unknownworlds.com/subnautica/"
 draft: false

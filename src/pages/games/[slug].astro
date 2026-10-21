@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.props;
-const { game, posts, cover } = item;
+const { game, posts, banner } = item;
 const { title, description, developer, publisher, genre, platforms, release, status, links } =
   game.data;
 
@@ -46,14 +46,14 @@ const jsonLd = {
   ...(publisher ? { publisher: { '@type': 'Organization', name: publisher } } : {}),
   ...(genre ? { genre } : {}),
   ...(platforms.length ? { gamePlatform: platforms } : {}),
-  ...(cover ? { image: [absoluteUrl(cover.src)] } : {}),
+  ...(banner ? { image: [absoluteUrl(banner.src)] } : {}),
 };
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  image={cover?.src}
+  image={banner?.src}
   canonical={canonical}
   jsonLd={jsonLd}
   tags={[title, ...game.data.aliases]}
@@ -61,59 +61,57 @@ const jsonLd = {
   <div class="container game">
     <a class="game__back" href={url('/games')}>← Все игры</a>
 
-    <div class="game__hero">
+    {
+      banner && (
+        <figure class="game__banner">
+          <Image
+            src={asImageMetadata(banner)}
+            widths={[640, 1000, 1200]}
+            sizes="(max-width: 1020px) 100vw, 1000px"
+            alt={title}
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
+
+    <div class="game__intro">
+      <div class="game__meta">
+        <span class:list={['game-card__status', `is-${status}`]}>{statusLabel}</span>
+        {genre && <span class="game__genre">{genre}</span>}
+      </div>
+
+      <h1 class="game__title">{title}</h1>
+      <p class="game__desc">{description}</p>
+
+      <dl class="game__specs">
+        {
+          specs.map((spec) => (
+            <div class="game__spec">
+              <dt>{spec.label}</dt>
+              <dd>{spec.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
       {
-        cover && (
-          <figure class="game__cover">
-            <Image
-              src={asImageMetadata(cover)}
-              widths={[320, 640]}
-              sizes="(max-width: 768px) 100vw, 320px"
-              alt={title}
-              loading="eager"
-              decoding="async"
-            />
-          </figure>
+        (links.site || links.steam) && (
+          <div class="game__links">
+            {links.site && (
+              <a href={links.site} rel="noopener noreferrer" target="_blank">
+                Официальный сайт ↗
+              </a>
+            )}
+            {links.steam && (
+              <a href={links.steam} rel="noopener noreferrer" target="_blank">
+                Steam ↗
+              </a>
+            )}
+          </div>
         )
       }
-
-      <div class="game__intro">
-        <div class="game__meta">
-          <span class:list={['game-card__status', `is-${status}`]}>{statusLabel}</span>
-          {genre && <span class="game__genre">{genre}</span>}
-        </div>
-
-        <h1 class="game__title">{title}</h1>
-        <p class="game__desc">{description}</p>
-
-        <dl class="game__specs">
-          {
-            specs.map((spec) => (
-              <div class="game__spec">
-                <dt>{spec.label}</dt>
-                <dd>{spec.value}</dd>
-              </div>
-            ))
-          }
-        </dl>
-
-        {
-          (links.site || links.steam) && (
-            <div class="game__links">
-              {links.site && (
-                <a href={links.site} rel="noopener noreferrer" target="_blank">
-                  Официальный сайт ↗
-                </a>
-              )}
-              {links.steam && (
-                <a href={links.steam} rel="noopener noreferrer" target="_blank">
-                  Steam ↗
-                </a>
-              )}
-            </div>
-          )
-        }
-      </div>
     </div>
 
     <div class="prose game__about">

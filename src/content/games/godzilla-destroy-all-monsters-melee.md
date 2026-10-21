@@ -9,6 +9,7 @@ release: "демо — Steam Next Fest"
 status: remaster
 aliases: ["Godzilla"]
 cover: ../../img/games/godzilla-destroy-all-monsters-melee/cover.jpg
+banner: ../../img/games/godzilla-destroy-all-monsters-melee/banner.jpg
 draft: false
 ---
 

@@ -94,6 +94,8 @@ const games = defineCollection({
       status: gameStatus.default('released'),
 
       cover: image().optional(),
+      // Широкий кадр для шапки страницы игры. Если не задан — берётся cover.
+      banner: image().optional(),
       links: z
         .object({
           site: z.string().url().optional(),

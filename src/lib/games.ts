@@ -38,6 +38,8 @@ export interface GameWithPosts {
   latest: Date | null;
   /** Обложка игры, а если её не задали — картинка первой новости. */
   cover: NewsImage | undefined;
+  /** Широкий кадр 16:9 для шапки страницы и карточки в сетке. */
+  banner: NewsImage | undefined;
 }
 
 /**
@@ -54,11 +56,15 @@ export async function getGamesWithPosts(): Promise<GameWithPosts[]> {
     .map((game) => {
       const gamePosts = postsForGame(game, posts);
       const withImage = gamePosts.find((post) => post.data.image);
+      const cover = game.data.cover ?? withImage?.data.image;
       return {
         game,
         posts: gamePosts,
         latest: gamePosts[0]?.data.date ?? null,
-        cover: game.data.cover ?? withImage?.data.image,
+        cover,
+        // Баннер 16:9 — основной кадр: карточка и шапка страницы режут его
+        // без потерь. Если баннера нет, подойдёт обложка или картинка новости.
+        banner: game.data.banner ?? cover,
       };
     })
     .sort((a, b) => {

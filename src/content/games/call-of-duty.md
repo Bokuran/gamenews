@@ -7,6 +7,7 @@ genre: "Шутер"
 platforms: ["PC", "PlayStation", "Xbox"]
 status: released
 cover: ../../img/games/call-of-duty/cover.jpg
+banner: ../../img/games/call-of-duty/banner.jpg
 links:
   site: "https://www.callofduty.com/"
 draft: false

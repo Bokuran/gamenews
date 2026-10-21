@@ -7,6 +7,7 @@ platforms: ["PC"]
 release: "не объявлена"
 status: announced
 cover: ../../img/games/revamp/cover.jpg
+banner: ../../img/games/revamp/banner.jpg
 draft: false
 ---
 

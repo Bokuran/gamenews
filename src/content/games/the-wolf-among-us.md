@@ -8,6 +8,7 @@ release: "ремастер — 29 октября 2026"
 status: remaster
 aliases: ["The Wolf Among Us"]
 cover: ../../img/games/the-wolf-among-us/cover.jpg
+banner: ../../img/games/the-wolf-among-us/banner.jpg
 draft: false
 ---
 

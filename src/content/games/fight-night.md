@@ -7,6 +7,7 @@ platforms: ["консоли"]
 release: "не объявлена"
 status: announced
 cover: ../../img/games/fight-night/cover.jpg
+banner: ../../img/games/fight-night/banner.jpg
 draft: false
 ---
 

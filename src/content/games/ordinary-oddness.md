@@ -8,6 +8,7 @@ platforms: ["PC", "консоли"]
 release: "не объявлена"
 status: announced
 cover: ../../img/games/ordinary-oddness/cover.jpg
+banner: ../../img/games/ordinary-oddness/banner.jpg
 draft: false
 ---
 
