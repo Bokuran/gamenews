@@ -5,14 +5,14 @@
 .search {
   position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
 
   &__field {
     display: flex;
     align-items: center;
-    gap: 8px;
-    height: 38px;
-    padding: 0 12px;
+    gap: 10px;
+    height: 46px;
+    padding: 0 16px;
     border: 1px solid var(--border);
     border-radius: 999px;
     background: var(--bg);
@@ -26,8 +26,8 @@
 
   &__icon {
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: var(--text-faint);
   }
 
@@ -37,7 +37,7 @@
     border: 0;
     background: none;
     color: var(--text);
-    font-size: 14px;
+    font-size: 15px;
     font-family: inherit;
     outline: none;
 
@@ -52,21 +52,24 @@
     }
   }
 
+  // Выпадашка шире самого поля, иначе заголовки новостей ломаются на 4-5 строк.
+  // Центрируем её относительно поля, а не растягиваем по его ширине.
   &__results {
     position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
+    top: calc(100% + 10px);
+    left: 50%;
     z-index: 30;
-    max-height: min(70vh, 460px);
+    width: 540px;
+    max-height: min(70vh, 480px);
     margin: 0;
-    padding: 6px;
+    padding: 8px;
     overflow-y: auto;
     list-style: none;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     background: var(--bg-elevated);
     box-shadow: 0 18px 40px rgb(0 0 0 / 45%);
+    transform: translateX(-50%);
 
     &[hidden] {
       display: none;
@@ -76,8 +79,8 @@
   &__item {
     a {
       display: block;
-      padding: 10px 12px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: 10px;
       color: var(--text);
     }
 
@@ -90,13 +93,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   &__badge {
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 999px;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -105,7 +108,7 @@
   }
 
   &__item-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.35;
   }
@@ -114,7 +117,7 @@
     display: -webkit-box;
     margin-top: 4px;
     overflow: hidden;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.45;
     color: var(--text-muted);
     -webkit-box-orient: vertical;
@@ -123,8 +126,8 @@
   }
 
   &__status {
-    padding: 14px 12px;
-    font-size: 13px;
+    padding: 16px 14px;
+    font-size: 14px;
     color: var(--text-muted);
   }
 
@@ -133,5 +136,33 @@
     border-radius: 3px;
     color: inherit;
     background: color-mix(in srgb, var(--color-orange) 32%, transparent);
+  }
+
+  // Уже десктопа поле сужается вместе с шапкой — выпадашку возвращаем
+  // к ширине поля, иначе она вылезет за экран.
+  @include respond-to('large') {
+    &__field {
+      height: 42px;
+      padding: 0 14px;
+    }
+
+    &__input {
+      font-size: 14px;
+    }
+
+    &__results {
+      left: 0;
+      width: auto;
+      right: 0;
+      transform: none;
+    }
+
+    &__item-title {
+      font-size: 15px;
+    }
+
+    &__item-desc {
+      font-size: 13px;
+    }
   }
 }
