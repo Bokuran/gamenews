@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsListPage from '@/components/NewsListPage.astro';
+import { getPublishedPosts, chunk } from '@/lib/posts';
+import { url } from '@/lib/paths';
+import { POSTS_PER_PAGE, SITE_NAME } from '@/lib/site';
+
+const posts = await getPublishedPosts();
+const pages = chunk(posts, POSTS_PER_PAGE);
+const lastPage = Math.max(pages.length, 1);
+const title = `Все игровые новости — ${SITE_NAME}`;
+const description =
+  'Полная лента игровых новостей с датами публикации и ссылками на первоисточники.';
+---
+
+<BaseLayout title={title} description={description} canonical={url('/news')}
+>
+  <NewsListPage
+    heading="Все новости"
+    lead={description}
+    posts={pages[0] ?? []}
+    currentPage={1}
+    lastPage={lastPage}
+  />
+</BaseLayout>

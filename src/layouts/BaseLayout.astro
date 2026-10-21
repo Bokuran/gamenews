@@ -1,0 +1,72 @@
+---
+import '@/styles/main.scss';
+import Seo from '@/components/Seo.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { url } from '@/lib/paths';
+import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | null;
+  date?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image,
+  canonical = Astro.url.pathname,
+  noindex = false,
+  jsonLd = null,
+  date,
+  modifiedTime,
+  tags,
+} = Astro.props;
+
+const pageTitle = title.includes(SITE_NAME) ? title : `${title} — ${SITE_NAME}`;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e0f13" />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={SITE_NAME}
+      href={url('/rss.xml')}
+    />
+    <Seo
+      title={pageTitle}
+      description={description}
+      image={image}
+      canonical={canonical}
+      noindex={noindex}
+      jsonLd={jsonLd}
+      date={date}
+      modifiedTime={modifiedTime}
+      tags={tags}
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href={url('/news')}>К содержанию</a>
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

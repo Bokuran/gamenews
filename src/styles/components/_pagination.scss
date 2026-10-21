@@ -1,0 +1,46 @@
+@use '@/styles/abstracts' as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__link,
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--text);
+      background: var(--bg-hover);
+    }
+  }
+
+  &__link.is-current {
+    border-color: var(--color-orange);
+    background: color-mix(in srgb, var(--color-orange) 16%, transparent);
+    color: var(--color-orange);
+    font-weight: 600;
+  }
+
+  &__gap {
+    padding: 0 4px;
+    color: var(--text-faint);
+  }
+}

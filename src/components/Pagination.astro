@@ -1,0 +1,63 @@
+---
+import { pageUrl } from '@/lib/paths';
+
+interface Props {
+  currentPage: number;
+  lastPage: number;
+  /** Ссылка на первую страницу — всегда /news, а не /news/page/1 */
+  firstHref?: string;
+}
+
+const { currentPage, lastPage, firstHref } = Astro.props;
+if (lastPage <= 1) throw new Error('Pagination: страниц меньше двух, компонент не нужен');
+
+// Скользящее окно, чтобы при 200 страницах навигация не растягивалась на экран.
+const WINDOW = 1;
+const pages: number[] = [];
+for (let p = 1; p <= lastPage; p++) {
+  const isEdge = p === 1 || p === lastPage;
+  const isNear = Math.abs(p - currentPage) <= WINDOW;
+  if (isEdge || isNear) pages.push(p);
+}
+
+const href = (p: number) => (p === 1 ? (firstHref ?? pageUrl(1)) : pageUrl(p));
+---
+
+<nav class="pagination" aria-label="Страницы новостей">
+  {
+    currentPage > 1 && (
+      <a class="pagination__arrow" href={href(currentPage - 1)} rel="prev">
+        ←
+      </a>
+    )
+  }
+
+  <ol class="pagination__list">
+    {
+      pages.map((p, i) => (
+        <>
+          {i > 0 && p - pages[i - 1] > 1 && <li class="pagination__gap">…</li>}
+          <li>
+            {p === currentPage ? (
+              <span class="pagination__link is-current" aria-current="page">
+                {p}
+              </span>
+            ) : (
+              <a class="pagination__link" href={href(p)}>
+                {p}
+              </a>
+            )}
+          </li>
+        </>
+      ))
+    }
+  </ol>
+
+  {
+    currentPage < lastPage && (
+      <a class="pagination__arrow" href={href(currentPage + 1)} rel="next">
+        →
+      </a>
+    )
+  }
+</nav>

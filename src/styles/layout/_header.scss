@@ -1,0 +1,71 @@
+@use '@/styles/abstracts' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap);
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  &__logo-mark {
+    color: var(--color-orange);
+    font-size: 14px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-muted);
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+      color: var(--text);
+      background: var(--bg-hover);
+    }
+
+    &.is-active {
+      color: var(--color-orange);
+      background: color-mix(in srgb, var(--color-orange) 14%, transparent);
+    }
+  }
+
+  @include respond-to('small') {
+    &__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    &__list {
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@use '@/styles/abstracts' as *;
+
+// SCSS-переменные из abstracts наружу — в CSS custom properties.
+// Это даёт возможность переопределять значения в рантайме (например, тёмную тему)
+// и избавляет от @use в каждом компонентном <style>-блоке.
+:root {
+  --color-orange: #{$color-orange};
+  --color-orange-2: #{$color-orange2};
+  --color-white: #{$color-white};
+  --color-pink: #{$color-pink};
+  --color-blue: #{$color-blue};
+  --color-green: #{$color-grean};
+  --color-violet: #{$color-violet};
+
+  // Поверхности и текст. Тёмная тема — базовая для игрового новостника.
+  --bg: #0e0f13;
+  --bg-elevated: #16181f;
+  --bg-hover: #1d2029;
+  --border: #262a35;
+  --text: #e8eaf0;
+  --text-muted: #9aa1b1;
+  --text-faint: #6b7280;
+
+  --radius: 10px;
+  --gap: 20px;
+
+  // Типографика
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --lh-base: 1.6;
+}

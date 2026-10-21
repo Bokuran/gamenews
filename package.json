@@ -1,0 +1,30 @@
+{
+  "name": "my-project",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "collect": "node scripts/collect-news.mjs",
+    "collect:write": "node scripts/collect-news.mjs --write"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.11",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.1",
+    "fast-xml-parser": "^5.11.2",
+    "sass": "^1.105.1",
+    "sharp": "^0.35.5",
+    "svgo": "^4.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0",
+    "vite-plugin-image-optimizer": "^2.0.3"
+  }
+}

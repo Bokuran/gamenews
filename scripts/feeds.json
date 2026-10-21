@@ -1,0 +1,100 @@
+{
+  "userAgent": "GamePulseBot/1.0 (+https://bokuran.github.io/gamenews; news aggregation for editorial use)",
+  "maxAgeHours": 36,
+  "concurrency": 6,
+  "requestTimeoutMs": 20000,
+  "maxItemsPerFeed": 40,
+
+  "images": {
+    "enabled": false,
+    "note": "По выключено: картинки из RSS принадлежат СМИ, их повторная публикация — риск. Включай только для изображений из официальных пресс-китов."
+  },
+
+  "filters": {
+    "mute": [
+      "maintenance",
+      "server restart",
+      "scheduled downtime",
+      "hotfix",
+      "серверные работы",
+      "технические работы",
+      "регламентные работы",
+      "recruitment",
+      "вакансии",
+      "sponsored",
+      "partner content"
+    ],
+    "must": [
+      "announce",
+      "анонс",
+      "reveal",
+      "тизер",
+      "release date",
+      "дата релиза",
+      "перенос",
+      "delay",
+      "delayed",
+      "game pass",
+      "open beta",
+      "открыт",
+      "early access",
+      "ранний доступ",
+      "remaster",
+      "ремастер",
+      "remake",
+      "ремейк",
+      "next fest",
+      "state of play",
+      "id@xbox"
+    ]
+  },
+
+  "feeds": [
+    {
+      "name": "Steam News Hub",
+      "url": "https://store.steampowered.com/feeds/news/",
+      "lang": "en",
+      "tier": "primary",
+      "note": "Первичка от издателей: анонсы, патчи, ивенты"
+    },
+    {
+      "name": "PC Gamer",
+      "url": "https://www.pcgamer.com/rss/",
+      "lang": "en",
+      "tier": "context"
+    },
+    {
+      "name": "Eurogamer News",
+      "url": "https://www.eurogamer.net/feed/news",
+      "lang": "en",
+      "tier": "context"
+    },
+    {
+      "name": "Rock Paper Shotgun",
+      "url": "https://www.rockpapershotgun.com/feed",
+      "lang": "en",
+      "tier": "context",
+      "note": "Сильнее всего в инди-сегменте"
+    },
+    {
+      "name": "GamesIndustry.biz",
+      "url": "https://www.gamesindustry.biz/feed",
+      "lang": "en",
+      "tier": "context",
+      "note": "Бизнес: студии, сделки, цифры, регуляторика"
+    },
+    {
+      "name": "Игромания",
+      "url": "https://www.igromania.ru/rss/news.xml",
+      "lang": "ru",
+      "tier": "headline",
+      "note": "Короткие описания — удобны как заголовочная лента"
+    },
+    {
+      "name": "Stopgame",
+      "url": "https://rss.stopgame.ru/rss_news.xml",
+      "lang": "ru",
+      "tier": "headline"
+    }
+  ]
+}

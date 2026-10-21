@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPublishedPosts, sortedTags } from '@/lib/posts';
+import { tagUrl, url } from '@/lib/paths';
+import { SITE_NAME } from '@/lib/site';
+
+const posts = await getPublishedPosts();
+const tags = sortedTags(posts);
+const description = `Все темы игровых новостей: ${tags
+  .slice(0, 12)
+  .map((t) => t.tag)
+  .join(', ')}.`;
+---
+
+<BaseLayout title={`Теги — ${SITE_NAME}`} description={description} canonical={url('/tags')}>
+  <div class="container tags">
+    <h1>Теги</h1>
+    <p class="home__lead">
+      В ленте {posts.length} материалов по {tags.length} темам.
+    </p>
+
+    <div class="tags__cloud">
+      {
+        tags.map(({ tag, count }) => (
+          <a class="tags__chip" href={tagUrl(tag)}>
+            {tag} <span>{count}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

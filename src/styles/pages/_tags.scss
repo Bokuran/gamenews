@@ -1,0 +1,51 @@
+@use '@/styles/abstracts' as *;
+
+.tags {
+  padding-top: 28px;
+
+  &__cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    font-size: 14px;
+    color: var(--text-muted);
+
+    &:hover {
+      border-color: var(--color-orange);
+      color: var(--color-orange);
+    }
+
+    span {
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+  }
+
+  &__header {
+    padding-block: 28px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  &__count {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-faint);
+  }
+
+  &__feed {
+    display: grid;
+    gap: 14px;
+  }
+}

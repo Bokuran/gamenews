@@ -1,0 +1,48 @@
+---
+import NewsCard from '@/components/NewsCard.astro';
+import Pagination from '@/components/Pagination.astro';
+import { url } from '@/lib/paths';
+
+interface Props {
+  heading: string;
+  lead?: string;
+  posts: any[];
+  currentPage: number;
+  lastPage: number;
+  /** Базовая ссылка первой страницы, переопределяет /news */
+  firstHref?: string;
+  /** Ссылка на RSS раздела */
+  rssHref?: string;
+}
+
+const {
+  heading,
+  lead,
+  posts,
+  currentPage,
+  lastPage,
+  firstHref = url('/news'),
+  rssHref = url('/rss.xml'),
+} = Astro.props;
+
+const now = new Date();
+const from = (currentPage - 1) * posts.length + 1;
+const to = from + posts.length - 1;
+---
+
+<div class="container home">
+  <section class="home__hero">
+    <h1>{heading}</h1>
+    {lead && <p class="home__lead">{lead}</p>}
+    <p class="home__section-note">
+      {from}–{to} материалов
+      <a class="home__more" href={rssHref}>Подписаться по RSS →</a>
+    </p>
+  </section>
+
+  <div class="home__feed">
+    {posts.map((post) => <NewsCard post={post} now={now} />)}
+  </div>
+
+  {lastPage > 1 && <Pagination currentPage={currentPage} lastPage={lastPage} firstHref={firstHref} />}
+</div>

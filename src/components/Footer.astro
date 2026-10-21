@@ -1,0 +1,26 @@
+---
+import { url } from '@/lib/paths';
+import { SITE_NAME } from '@/lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__about">
+      <p class="footer__title">{SITE_NAME}</p>
+      <p class="footer__note">
+        Мы пересказываем новости своими словами и всегда ссылаемся на первоисточник. Все права на
+        материалы принадлежат их владельцам.
+      </p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Дополнительная навигация">
+      <a href={url('/rss.xml')}>RSS-лента</a>
+      <a href={url('/sitemap-index.xml')}>Карта сайта</a>
+      <a href={url('/about')}>О проекте</a>
+    </nav>
+
+    <p class="footer__copy">&copy; {year} {SITE_NAME}</p>
+  </div>
+</footer>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsListPage from '@/components/NewsListPage.astro';
+import { getPublishedPosts, postsByTag, sortedTags } from '@/lib/posts';
+import { tagUrl } from '@/lib/paths';
+import { SITE_NAME } from '@/lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return sortedTags(posts).map(({ tag }) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const posts = await getPublishedPosts();
+const filtered = postsByTag(posts, tag);
+const canonical = tagUrl(tag);
+const description = `${filtered.length} материалов по теме «${tag}» — анонсы, релизы и обновления.`;
+---
+
+<BaseLayout
+  title={`«${tag}» — ${SITE_NAME}`}
+  description={description}
+  canonical={canonical}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: tag,
+    description,
+    url: canonical,
+  }}
+>
+  <NewsListPage
+    heading={tag}
+    lead={description}
+    posts={filtered}
+    currentPage={1}
+    lastPage={1}
+    firstHref={canonical}
+  />
+</BaseLayout>

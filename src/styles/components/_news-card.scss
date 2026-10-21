@@ -1,0 +1,138 @@
+@use '@/styles/abstracts' as *;
+
+.news-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--gap);
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--color-orange) 55%, var(--border));
+
+    .news-card__title a {
+      color: var(--color-orange);
+    }
+  }
+
+  &__media {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--bg-hover);
+    aspect-ratio: 16 / 9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  &__type {
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+
+    &.is-announce {
+      background: color-mix(in srgb, var(--color-blue) 20%, transparent);
+      color: #8fb0ff;
+    }
+
+    &.is-release {
+      background: color-mix(in srgb, var(--color-green) 20%, transparent);
+      color: #6fe08f;
+    }
+
+    &.is-delay {
+      background: color-mix(in srgb, var(--color-pink) 20%, transparent);
+      color: var(--color-pink);
+    }
+
+    &.is-rumor {
+      background: color-mix(in srgb, var(--color-violet) 22%, transparent);
+      color: #cf9bff;
+    }
+
+    &.is-industry {
+      background: color-mix(in srgb, var(--color-orange) 20%, transparent);
+      color: var(--color-orange-2);
+    }
+  }
+
+  &__time {
+    color: var(--text-faint);
+  }
+
+  &__title {
+    margin-bottom: 6px;
+    font-size: 19px;
+
+    a {
+      color: var(--text);
+    }
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    a {
+      color: var(--text-faint);
+
+      &:hover {
+        color: var(--color-orange);
+      }
+    }
+  }
+
+  // Ссылка на первоисточник — юридически обязательный элемент карточки.
+  &__source {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    border-bottom: 1px dashed var(--border);
+
+    &:hover {
+      color: var(--color-orange);
+    }
+  }
+
+  @include respond-to('medium') {
+    grid-template-columns: 1fr;
+
+    &__media {
+      aspect-ratio: 16 / 9;
+    }
+  }
+}

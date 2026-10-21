@@ -1,0 +1,46 @@
+---
+import { url } from '@/lib/paths';
+import { SITE_NAME } from '@/lib/site';
+
+const links = [
+  { href: url('/'), label: 'Главная' },
+  { href: url('/news'), label: 'Все новости' },
+  { href: url('/tags'), label: 'Теги' },
+  { href: url('/rss.xml'), label: 'RSS' },
+];
+
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+function isActive(href: string): boolean {
+  const normalized = href.replace(/\/+$/, '') || '/';
+  if (normalized === '/') return pathname === '/';
+  return pathname === normalized || pathname.startsWith(`${normalized}/`);
+}
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="header__logo" href={url('/')}>
+      <span class="header__logo-mark" aria-hidden="true">▲</span>
+      <span class="header__logo-text">{SITE_NAME}</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Основная навигация">
+      <ul class="header__list">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={['header__link', { 'is-active': isActive(link.href) }]}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsCard from '@/components/NewsCard.astro';
+import { url } from '@/lib/paths';
+import { SITE_NAME, SITE_DESCRIPTION, HOMEPAGE_POSTS } from '@/lib/site';
+
+const now = new Date();
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const featured = posts.filter((p) => p.data.featured).slice(0, 1);
+const feed = posts.slice(0, HOMEPAGE_POSTS);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: Astro.site?.toString(),
+  inLanguage: 'ru',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${Astro.site?.toString()}?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<BaseLayout title={SITE_NAME} description={SITE_DESCRIPTION} canonical={url('/')} jsonLd={jsonLd}>
+  <div class="container home">
+    <section class="home__hero">
+      <h1>{SITE_NAME}</h1>
+      <p class="home__lead">{SITE_DESCRIPTION}</p>
+    </section>
+
+    {
+      featured.length > 0 && (
+        <section aria-labelledby="featured-heading">
+          <div class="home__section-head">
+            <h2 id="featured-heading">Главное</h2>
+          </div>
+          <div class="home__feed">
+            {featured.map((post) => (
+              <NewsCard post={post} now={now} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section aria-labelledby="latest-heading">
+      <div class="home__section-head">
+        <h2 id="latest-heading">Свежие новости</h2>
+        <a class="home__more" href={url('/news')}>
+          Все новости →
+        </a>
+      </div>
+
+      {feed.length > 0 ? (
+        <div class="home__feed">
+          {feed.map((post) => (
+            <NewsCard post={post} now={now} />
+          ))}
+        </div>
+      ) : (
+        <p class="home__empty">
+          Пока пусто. Запусти <code>npm run collect:write</code>, чтобы наполнить ленту черновиками.
+        </p>
+      )}
+    </section>
+  </div>
+</BaseLayout>

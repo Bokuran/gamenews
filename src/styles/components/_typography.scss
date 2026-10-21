@@ -1,0 +1,80 @@
+@use '@/styles/abstracts' as *;
+
+// reset.scss обнуляет line-height до 1 — здесь возвращаем читаемость.
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--lh-base);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(26px, 4.2vw, 38px);
+}
+
+h2 {
+  font-size: clamp(20px, 2.6vw, 26px);
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p {
+  // Единичный селектор, чтобы переопределить `p { margin: 0 }` из reset.
+  margin-block: 0 1em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: var(--color-blue);
+
+  &:hover {
+    color: var(--color-orange);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+
+  &:focus {
+    left: 8px;
+    top: 8px;
+    z-index: 100;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--color-orange);
+    color: var(--color-white);
+  }
+}

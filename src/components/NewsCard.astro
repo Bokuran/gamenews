@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { asImageMetadata } from '@/lib/images';
+import { newsUrl, tagUrl } from '@/lib/paths';
+import { NEWS_TYPES, relativeTime } from '@/lib/site';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'news'>;
+  /** h1 только на странице самой новости */
+  headingLevel?: 'h2' | 'h3';
+  showImage?: boolean;
+  now?: Date;
+}
+
+const { post, headingLevel = 'h2', showImage = true, now = new Date() } = Astro.props;
+const { title, description, date, type, tags, source, sourceName, image, updated } = post.data;
+
+const Heading = headingLevel;
+const published = updated ?? date;
+const typeLabel = NEWS_TYPES[type] ?? type;
+---
+
+<article class="news-card">
+  {
+    showImage && image && (
+      <a class="news-card__media" href={newsUrl(post.id)} tabindex={-1} aria-hidden="true">
+        <Image
+          src={asImageMetadata(image)}
+          widths={[400, 800]}
+          sizes="(max-width: 700px) 100vw, 380px"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+    )
+  }
+
+  <div class="news-card__body">
+    <div class="news-card__meta">
+      <span class:list={['news-card__type', `is-${type}`]}>{typeLabel}</span>
+      <time class="news-card__time" datetime={published.toISOString()}>
+        {relativeTime(published, now)}
+      </time>
+    </div>
+
+    <Heading class="news-card__title">
+      <a href={newsUrl(post.id)}>{title}</a>
+    </Heading>
+
+    <p class="news-card__desc">{description}</p>
+
+    <div class="news-card__footer">
+      {
+        tags.length > 0 && (
+          <ul class="news-card__tags">
+            {tags.slice(0, 3).map((tag) => (
+              <li>
+                <a href={tagUrl(tag)}>#{tag}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <a class="news-card__source" href={source} rel="noopener noreferrer nofollow" target="_blank">
+        {sourceName} <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,141 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import { asImageMetadata } from '@/lib/images';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsCard from '@/components/NewsCard.astro';
+import { absoluteUrl, newsUrl, tagUrl } from '@/lib/paths';
+import { SITE_NAME, NEWS_TYPES, formatDateTime, formatDate } from '@/lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const {
+  title,
+  description,
+  date,
+  updated,
+  type,
+  tags,
+  source,
+  sourceName,
+  image,
+  imageCredit,
+} = post.data;
+
+const { Content } = await render(post);
+const canonical = newsUrl(post.id);
+const published = updated ?? date;
+
+// Релевантные материалы: максимум пересечений по тегам, без самой записи.
+const all = await getCollection('news', ({ data }) => !data.draft);
+const related = all
+  .filter((p) => p.id !== post.id)
+  .map((p) => ({
+    post: p,
+    score: p.data.tags.filter((t) => tags.includes(t)).length,
+  }))
+  .filter((x) => x.score > 0)
+  .sort(
+    (a, b) =>
+      b.score - a.score || b.post.data.date.getTime() - a.post.data.date.getTime(),
+  )
+  .slice(0, 3)
+  .map((x) => x.post);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  dateModified: published.toISOString(),
+  inLanguage: 'ru',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(canonical) },
+  isPartOf: { '@type': 'WebSite', name: SITE_NAME },
+  // isBasedOn — законный способ указать, на каком первоисточнике основан пересказ.
+  isBasedOn: source,
+  publisher: { '@type': 'Organization', name: SITE_NAME },
+  ...(image ? { image: [absoluteUrl(image.src)] } : {}),
+  ...(tags.length ? { keywords: tags.join(', ') } : {}),
+};
+
+const typeLabel = NEWS_TYPES[type] ?? type;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image?.src}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  date={date}
+  modifiedTime={published}
+  tags={tags}
+>
+  <div class="container article">
+    <div class="article__meta">
+      <span class:list={['news-card__type', `is-${type}`]}>{typeLabel}</span>
+      <time datetime={date.toISOString()}>{formatDateTime(date)}</time>
+      {updated && <span>· обновлено {formatDate(updated)}</span>}
+    </div>
+
+    <h1 class="article__title">{title}</h1>
+
+    {
+      image && (
+        <figure class="article__hero">
+          <Image
+            src={asImageMetadata(image)}
+            widths={[480, 900, 1280]}
+            sizes="(max-width: 800px) 100vw, 760px"
+            alt={imageCredit || title}
+            loading="eager"
+            decoding="async"
+          />
+          {imageCredit && <figcaption class="article__credit">{imageCredit}</figcaption>}
+        </figure>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <aside class="article__source-box">
+      <span>Источник:</span>
+      <a href={source} rel="noopener noreferrer nofollow" target="_blank">
+        {sourceName}
+      </a>
+    </aside>
+
+    {
+      tags.length > 0 && (
+        <div class="article__tags">
+          {tags.map((tag) => (
+            <a href={tagUrl(tag)}>#{tag}</a>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <section class="article__related" aria-labelledby="related-heading">
+          <h2 id="related-heading">По теме</h2>
+          <div class="home__feed">
+            {related.map((p) => (
+              <NewsCard post={p} headingLevel="h3" now={published} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</BaseLayout>

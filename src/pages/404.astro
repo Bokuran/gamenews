@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { url } from '@/lib/paths';
+---
+
+<BaseLayout
+  title="Страница не найдена (404)"
+  description="Такой страницы нет — возможно, новость удалили или ссылка устарела."
+  canonical={url('/404')}
+  noindex
+>
+  <div class="container home">
+    <section class="home__hero">
+      <h1>404 — страница не найдена</h1>
+      <p class="home__lead">
+        Возможно, материал удалили, переименовали или ссылка была набрана с опечаткой.
+      </p>
+      <p><a class="home__more" href={url('/news')}>Вернуться в ленту →</a></p>
+    </section>
+  </div>
+</BaseLayout>

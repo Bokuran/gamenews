@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsListPage from '@/components/NewsListPage.astro';
+import { getPublishedPosts, chunk } from '@/lib/posts';
+import { url } from '@/lib/paths';
+import { POSTS_PER_PAGE, SITE_NAME } from '@/lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const pages = chunk(posts, POSTS_PER_PAGE);
+
+  // Страница 1 живёт в /news/index.astro, здесь только начиная со второй.
+  return pages
+    .slice(1)
+    .map((_, index) => ({ params: { page: String(index + 2) } }));
+}
+
+const { page } = Astro.params;
+const pageNumber = Number(page);
+
+const posts = await getPublishedPosts();
+const pages = chunk(posts, POSTS_PER_PAGE);
+const lastPage = pages.length;
+
+if (!Number.isInteger(pageNumber) || pageNumber < 2 || pageNumber > lastPage) {
+  return Astro.redirect('/404');
+}
+
+const title = `Игровые новости — страница ${pageNumber} — ${SITE_NAME}`;
+const description = `Материалы ${
+  (pageNumber - 1) * POSTS_PER_PAGE + 1
+}–${Math.min(pageNumber * POSTS_PER_PAGE, posts.length)} из ${posts.length}.`;
+---
+
+<BaseLayout title={title} description={description} canonical={url(`/news/page/${pageNumber}`)}>
+  <NewsListPage
+    heading="Все новости"
+    lead="Полная лента игровых новостей с датами публикации и ссылками на первоисточники."
+    posts={pages[pageNumber - 1] ?? []}
+    currentPage={pageNumber}
+    lastPage={lastPage}
+  />
+</BaseLayout>

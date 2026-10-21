@@ -1,0 +1,39 @@
+@use '@/styles/abstracts' as *;
+
+.home {
+  &__hero {
+    padding-block: 36px 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  &__lead {
+    max-width: 62ch;
+    margin-top: 10px;
+    color: var(--text-muted);
+  }
+
+  &__section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--gap);
+    margin-bottom: 16px;
+  }
+
+  &__more {
+    font-size: 14px;
+    color: var(--color-orange);
+  }
+
+  &__feed {
+    display: grid;
+    gap: 14px;
+  }
+
+  &__empty {
+    padding: 48px 0;
+    text-align: center;
+    color: var(--text-faint);
+  }
+}
