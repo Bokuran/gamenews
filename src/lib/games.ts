@@ -38,7 +38,7 @@ export interface GameWithPosts {
   latest: Date | null;
   /** Обложка игры, а если её не задали — картинка первой новости. */
   cover: NewsImage | undefined;
-  /** Широкий кадр 16:9 для шапки страницы и карточки в сетке. */
+  /** Широкий кадр 16:9 для шапки страницы игры. */
   banner: NewsImage | undefined;
 }
 
@@ -62,8 +62,8 @@ export async function getGamesWithPosts(): Promise<GameWithPosts[]> {
         posts: gamePosts,
         latest: gamePosts[0]?.data.date ?? null,
         cover,
-        // Баннер 16:9 — основной кадр: карточка и шапка страницы режут его
-        // без потерь. Если баннера нет, подойдёт обложка или картинка новости.
+        // Баннер 16:9 отображается в шапке страницы. Если он не задан,
+        // используем обложку или изображение новости как запасной вариант.
         banner: game.data.banner ?? cover,
       };
     })

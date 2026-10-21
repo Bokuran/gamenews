@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 /**
  * Тип новости. Влияет на шаблон заголовка и на фильтры коллектора.
@@ -49,7 +50,7 @@ const news = defineCollection({
       tags: z.array(z.string().min(1)).max(8).default([]),
 
       // Обязательная гиперссылка на первоисточник — юридическая страховка.
-      source: z.string().url(),
+      source: z.url(),
       sourceName: z.string().min(2),
 
       image: image().optional(),
@@ -98,8 +99,8 @@ const games = defineCollection({
       banner: image().optional(),
       links: z
         .object({
-          site: z.string().url().optional(),
-          steam: z.string().url().optional(),
+          site: z.url().optional(),
+          steam: z.url().optional(),
         })
         .default({}),
 
