@@ -8,8 +8,7 @@ platforms: ["iOS", "Android"]
 release: "Апрель 2026"
 status: released
 aliases: ["Dragon Quest Smash", "Dragon Quest Grow", "DQ Smash/Grow"]
-cover: ../../img/games/dragon-quest-smash-grow/cover.svg
-banner: ../../img/games/dragon-quest-smash-grow/banner.svg
+
 draft: false
 ---
 

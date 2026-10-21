@@ -6,8 +6,6 @@ type: announce
 tags: ["Dragon Quest","JRPG","Crossover","Event","Mobile"]
 source: "https://store.steampowered.com/news/group/6070552/view/679639030033287893"
 sourceName: "Steam News Hub"
-image: ../../../img/news/dragon-quest-smash-grow-dragon-quest-iv-crossover-event-revealed-avail/dragon-quest-smash-grow-crossover.svg
-imageCredit: "Square Enix"
 draft: false
 featured: false
 ---
