@@ -12,10 +12,16 @@ const links = [
 
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
+// Корень сайта — это BASE_URL, а не '/': на GitHub Pages проект живёт
+// в подпапке (/gamenews), и сравнение с '/' не срабатывало.
+const home = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/';
+
 function isActive(href: string): boolean {
-  const normalized = href.replace(/\/+$/, '') || '/';
-  if (normalized === '/') return pathname === '/';
-  return pathname === normalized || pathname.startsWith(`${normalized}/`);
+  const target = href.replace(/\/+$/, '') || '/';
+  // Главную проверяем на точное совпадение, иначе startsWith ниже
+  // подсвечивает её на всех страницах сайта.
+  if (target === home) return pathname === home;
+  return pathname === target || pathname.startsWith(`${target}/`);
 }
 ---
 
