@@ -1,4 +1,4 @@
----
+﻿---
 title: "Для The Wolf Among Us Remastered выпустили трейлер и объявили скидки для владельцев оригинала"
 description: "Ремастер детективного триллера Telltale выходит 29 октября на PC, PS5 и Xbox. Обновлённые графика и анимации, режим «Нуар» и восстановленные вырезанные сцены."
 date: 2026-10-21T05:30:11.000Z
@@ -6,7 +6,7 @@ type: announce
 tags: ["The Wolf Among Us", "ремастер", "Telltale", "Switch"]
 source: "https://www.igromania.ru/news/169394/dlya-the-wolf-among-us-remastered-predstavili-syuzhetnyj-trejler-i-skidochnyij-plan/"
 sourceName: "Игромания"
-image: ./wolf-among-us-remastered.jpg
+image: ../../img/news/wolf-among-us-remastered.jpg
 imageCredit: "Telltale"
 draft: false
 featured: false

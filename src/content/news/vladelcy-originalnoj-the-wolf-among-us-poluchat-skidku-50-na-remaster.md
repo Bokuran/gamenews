@@ -1,4 +1,4 @@
----
+﻿---
 title: "The Wolf Among Us Remastered: скидки до 50% для владельцев оригинала и детали переиздания"
 description: "Telltale раскрыла условия скидок на ремастер детективного триллера и рассказала о бонусном контенте: вырезанные сцены, нуар-режим и галерея."
 date: 2026-10-20T19:22:43.000Z
@@ -6,7 +6,7 @@ type: announce
 tags: ["The Wolf Among Us", "Telltale", "скидки", "ремастер"]
 source: "https://stopgame.ru/newsdata/73241/vladelcy_originalnoy_the_wolf_among_us_poluchat_skidku_50_na_remaster"
 sourceName: "Stopgame"
-image: ./wolf-among-us-discount.jpg
+image: ../../img/news/wolf-among-us-discount.jpg
 imageCredit: "Telltale / Stopgame"
 draft: false
 featured: false

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Вопреки ожиданиям: Cyberpunk 2077 получит бесплатное обновление 2.5 к аниме Edgerunners 2"
 description: "CD Projekt RED анонсировала масштабный патч для Cyberpunk 2077, приуроченный к премьере второго сезона аниме «Киберпанк: Бегущие по краю». Выход 22 октября на PC, PS5 и Xbox Series X/S."
 date: 2026-10-20T10:13:56.000Z
@@ -6,7 +6,7 @@ type: patch
 tags: ["Cyberpunk 2077", "обновление", "Edgerunners", "CD Projekt RED"]
 source: "https://www.playground.ru/cyberpunk_2077/news/cd_projekt_red_prigotovila_syurpriz_fanatam_dlya_cyberpunk_2077_anonsirovali_obnovlenie_2_5_po_motivam_edgerunners_2-1883262"
 sourceName: "PlayGround.ru"
-image: ./cyberpunk-25-edgerunners.png
+image: ../../img/news/cyberpunk-25-edgerunners.png
 imageCredit: "CD Projekt RED"
 draft: false
 featured: false

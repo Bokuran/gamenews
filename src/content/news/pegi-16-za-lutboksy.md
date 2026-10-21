@@ -1,4 +1,4 @@
----
+﻿---
 title: "«Любой лутбокс — теперь PEGI 16»: рейтинг возрастных ограничений ужесточили"
 description: >-
   Европейская система рейтингов PEGI начала применять новые правила к уже вышедшим цифровым играм:
@@ -9,7 +9,7 @@ type: industry
 tags: [индустрия, рейтинг, лутбоксы, PEGI]
 source: https://www.gamesindustry.biz/pegi-begins-moving-existing-digital-only-games-with-loot-boxes-up-to-a-16-rating
 sourceName: GamesIndustry.biz
-image: ./pegi-lootboxes.jpg
+image: ../../img/news/pegi-lootboxes.jpg
 imageCredit: Иллюстрация Game Pulse
 featured: true
 draft: false

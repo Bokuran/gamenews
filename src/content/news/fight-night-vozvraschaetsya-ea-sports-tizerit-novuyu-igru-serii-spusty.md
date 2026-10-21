@@ -1,4 +1,4 @@
----
+﻿---
 title: "Fight Night возвращается: EA Sports анонсировала боксёрскую игру спустя 15 лет"
 description: "EA Sports вернёт легендарную серию боксёрских симуляторов. Первый постер и слоган «Бой никогда не заканчивается» появились в соцсетях."
 date: 2026-10-21T03:48:50.000Z
@@ -6,7 +6,7 @@ type: announce
 tags: ["Fight Night", "EA Sports", "бокс", "тизер"]
 source: "https://www.igromania.ru/news/169391/fight-night-vozvraschaetsya-ea-sports-tizerit-novuyu-igru-serii-spustya-15-let/"
 sourceName: "Игромания"
-image: ./fight-night-ea.jpg
+image: ../../img/news/fight-night-ea.jpg
 imageCredit: "EA Sports"
 draft: false
 featured: false

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Новая Xbox Project Helix выйдет в 2028 году за $1200–1800, а Game Pass станет опциональным"
 description: "Глава Xbox Аша Шарма рассказал Fortune о планах на следующее поколение консоли Microsoft: портативное устройство, пересмотр подписки и борьба за ОС."
 date: 2026-10-21T03:16:30.000Z
@@ -6,7 +6,7 @@ type: announce
 tags: ["Xbox", "Game Pass", "Project Helix", "консоли"]
 source: "https://www.igromania.ru/news/169390/novaya-xbox-mozhet-vyijti-v-2028-m-i-prodavatsya-za-1200-1800-dollarov-a-game-pass-izmenitsya-fortune/"
 sourceName: "Fortune / Игромания"
-image: ./project-helix-xbox.jpg
+image: ../../img/news/project-helix-xbox.jpg
 imageCredit: "Fortune"
 draft: false
 featured: false

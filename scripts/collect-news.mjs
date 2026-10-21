@@ -26,6 +26,10 @@ import { dedupeSimilar } from './lib/dedupe.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
 const NEWS_DIR = join(ROOT, 'src', 'content', 'news');
+// Картинки лежат отдельно от текстов: content/ — только markdown,
+// img/ — медиа. Путь во фронтматтере считается от файла новости.
+const IMAGE_DIR = join(ROOT, 'src', 'img', 'news');
+const IMAGE_REF_PREFIX = '../../img/news';
 const STATE_PATH = join(HERE, '.state.json');
 
 const TIER_ORDER = { primary: 0, headline: 1, context: 2 };
@@ -206,8 +210,10 @@ async function downloadImage(url, slug, config) {
 
   const ext = EXT_BY_TYPE[type] ?? 'jpg';
   const file = `${slug}.${ext}`;
-  writeFileSync(join(NEWS_DIR, file), buffer);
-  return `./${file}`;
+  mkdirSync(IMAGE_DIR, { recursive: true });
+  writeFileSync(join(IMAGE_DIR, file), buffer);
+  // image() в схеме резолвит путь относительно .md, поэтому поднимаемся на два уровня.
+  return `${IMAGE_REF_PREFIX}/${file}`;
 }
 
 // ─── Output ─────────────────────────────────────────────────────────────

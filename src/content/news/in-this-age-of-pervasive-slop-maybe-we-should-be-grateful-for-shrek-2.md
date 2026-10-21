@@ -1,4 +1,4 @@
----
+﻿---
 title: "Shrek 2 Remastered: игру по мультфильму 2004 года переиздают 10 ноября"
 description: "По мотивам второго «Шрека» выходит ремастер оригинальной игры 2004 года. Изначально проект затерялся среди хитов эпохи: Halo 2, WoW, GTA: San Andreas и Half-Life 2."
 date: 2026-10-21T02:15:30.000Z
@@ -6,7 +6,7 @@ type: announce
 tags: ["Shrek", "ремастер", "retro"]
 source: "https://store.steampowered.com/news/group/1850/view/714541927145406485"
 sourceName: "GamesRadar+"
-image: ./shrek-2-remastered.jpg
+image: ../../img/news/shrek-2-remastered.jpg
 imageCredit: "GamesRadar+ / Future"
 draft: false
 featured: false
