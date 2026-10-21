@@ -10,7 +10,7 @@ tags: [индустрия, рейтинг, лутбоксы, PEGI]
 source: https://www.gamesindustry.biz/pegi-begins-moving-existing-digital-only-games-with-loot-boxes-up-to-a-16-rating
 sourceName: GamesIndustry.biz
 image: ../../img/news/pegi-lootboxes.jpg
-imageCredit: Иллюстрация Game Pulse
+imageCredit: GamesIndustry.biz
 featured: true
 draft: false
 ---
