@@ -3,6 +3,7 @@
 .news-card {
   display: grid;
   grid-template-columns: 200px 1fr;
+  align-items: center;
   gap: var(--gap);
   padding: 16px;
   border: 1px solid var(--border);
@@ -23,7 +24,7 @@
     overflow: hidden;
     border-radius: 8px;
     background: var(--bg-hover);
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1 / 1;
 
     img {
       width: 100%;
@@ -132,7 +133,7 @@
     grid-template-columns: 1fr;
 
     &__media {
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 1 / 1;
     }
   }
 }
