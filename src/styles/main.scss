@@ -11,9 +11,11 @@
 @use 'components/typography';
 @use 'components/search';
 @use 'components/news-card';
+@use 'components/game-card';
 @use 'components/pagination';
 
 //pages
 @use 'pages/home';
 @use 'pages/article';
 @use 'pages/tags';
+@use 'pages/games';

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GameCard from '@/components/GameCard.astro';
+import { getGamesWithPosts } from '@/lib/games';
+import { url } from '@/lib/paths';
+import { plural, SITE_NAME } from '@/lib/site';
+
+const now = new Date();
+// Карточки без новостей не показываем: раздел описывает то, о чём мы писали.
+const items = (await getGamesWithPosts()).filter((item) => item.posts.length > 0);
+const description = `Игры, о которых писал ${SITE_NAME}: ${items
+  .slice(0, 6)
+  .map((item) => item.game.data.title)
+  .join(', ')}.`;
+---
+
+<BaseLayout
+  title={`Игры — ${SITE_NAME}`}
+  description={description}
+  canonical={url('/games')}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Игры',
+    description,
+    url: url('/games'),
+  }}
+>
+  <div class="container games">
+    <section class="games__hero">
+      <h1>Игры</h1>
+      <p class="home__lead">
+        {items.length} {plural(items.length, 'проект', 'проекта', 'проектов')}, о которых мы писали.
+        Карточка собирает всё, что известно об игре, и все новости о ней.
+      </p>
+    </section>
+
+    {
+      items.length > 0 ? (
+        <div class="games__grid">
+          {items.map((item) => (
+            <GameCard item={item} now={now} />
+          ))}
+        </div>
+      ) : (
+        <p class="home__empty">Пока пусто: карточки появятся вместе с первыми новостями.</p>
+      )
+    }
+  </div>
+</BaseLayout>

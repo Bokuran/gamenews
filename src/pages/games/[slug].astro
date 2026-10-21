@@ -1,0 +1,144 @@
+---
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import { asImageMetadata } from '@/lib/images';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsCard from '@/components/NewsCard.astro';
+import { GAME_STATUS, getGamesWithPosts } from '@/lib/games';
+import { absoluteUrl, gameUrl, url } from '@/lib/paths';
+import { plural } from '@/lib/site';
+
+export async function getStaticPaths() {
+  const items = await getGamesWithPosts();
+  return items.map((item) => ({
+    params: { slug: item.game.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { game, posts, cover } = item;
+const { title, description, developer, publisher, genre, platforms, release, status, links } =
+  game.data;
+
+const { Content } = await render(game);
+const canonical = gameUrl(game.id);
+const statusLabel = GAME_STATUS[status] ?? status;
+const countLabel = `${posts.length} ${plural(posts.length, 'новость', 'новости', 'новостей')}`;
+
+const specs = [
+  { label: 'Разработчик', value: developer },
+  { label: 'Издатель', value: publisher },
+  { label: 'Жанр', value: genre },
+  { label: 'Платформы', value: platforms.join(', ') },
+  { label: 'Релиз', value: release },
+  { label: 'Статус', value: statusLabel },
+].filter((spec) => Boolean(spec.value));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: title,
+  description,
+  url: absoluteUrl(canonical),
+  inLanguage: 'ru',
+  ...(developer ? { author: { '@type': 'Organization', name: developer } } : {}),
+  ...(publisher ? { publisher: { '@type': 'Organization', name: publisher } } : {}),
+  ...(genre ? { genre } : {}),
+  ...(platforms.length ? { gamePlatform: platforms } : {}),
+  ...(cover ? { image: [absoluteUrl(cover.src)] } : {}),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={cover?.src}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  tags={[title, ...game.data.aliases]}
+>
+  <div class="container game">
+    <a class="game__back" href={url('/games')}>← Все игры</a>
+
+    <div class="game__hero">
+      {
+        cover && (
+          <figure class="game__cover">
+            <Image
+              src={asImageMetadata(cover)}
+              widths={[320, 640]}
+              sizes="(max-width: 768px) 100vw, 320px"
+              alt={title}
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        )
+      }
+
+      <div class="game__intro">
+        <div class="game__meta">
+          <span class:list={['game-card__status', `is-${status}`]}>{statusLabel}</span>
+          {genre && <span class="game__genre">{genre}</span>}
+        </div>
+
+        <h1 class="game__title">{title}</h1>
+        <p class="game__desc">{description}</p>
+
+        <dl class="game__specs">
+          {
+            specs.map((spec) => (
+              <div class="game__spec">
+                <dt>{spec.label}</dt>
+                <dd>{spec.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        {
+          (links.site || links.steam) && (
+            <div class="game__links">
+              {links.site && (
+                <a href={links.site} rel="noopener noreferrer" target="_blank">
+                  Официальный сайт ↗
+                </a>
+              )}
+              {links.steam && (
+                <a href={links.steam} rel="noopener noreferrer" target="_blank">
+                  Steam ↗
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="prose game__about">
+      <Content />
+    </div>
+
+    <section class="game__news" aria-labelledby="game-news-heading">
+      <div class="home__section-head">
+        <h2 id="game-news-heading">Новости об игре</h2>
+        <span class="game__count">{countLabel}</span>
+      </div>
+
+      {
+        posts.length > 0 ? (
+          <div class="home__feed">
+            {posts.map((post) => (
+              <NewsCard post={post} headingLevel="h3" />
+            ))}
+          </div>
+        ) : (
+          <p class="home__empty">
+            Новостей об этой игре пока нет — карточка появится в ленте, как только выйдет материал.
+          </p>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>

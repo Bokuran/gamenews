@@ -1,0 +1,125 @@
+@use '@/styles/abstracts' as *;
+
+// Карточка игры в сетке раздела /games/.
+.game-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--color-orange) 55%, var(--border));
+
+    .game-card__title a {
+      color: var(--color-orange);
+    }
+  }
+
+  &__media {
+    display: block;
+    overflow: hidden;
+    background: var(--bg-hover);
+    aspect-ratio: 16 / 9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  // Заглушка, если у игры и её новостей нет картинки.
+  &__initial {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--text-faint);
+    background: linear-gradient(135deg, var(--bg-hover), var(--bg-elevated));
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px 16px;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  &__status {
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+
+    &.is-released {
+      background: color-mix(in srgb, var(--color-green) 20%, transparent);
+      color: #6fe08f;
+    }
+
+    &.is-early-access {
+      background: color-mix(in srgb, var(--color-blue) 20%, transparent);
+      color: #8fb0ff;
+    }
+
+    &.is-announced {
+      background: color-mix(in srgb, var(--color-violet) 22%, transparent);
+      color: #cf9bff;
+    }
+
+    &.is-remaster {
+      background: color-mix(in srgb, var(--color-orange) 20%, transparent);
+      color: var(--color-orange-2);
+    }
+  }
+
+  &__genre {
+    color: var(--text-faint);
+  }
+
+  &__title {
+    font-size: 18px;
+
+    a {
+      color: var(--text);
+    }
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  &__count {
+    margin-top: auto;
+    padding-top: 4px;
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+}

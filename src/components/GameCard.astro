@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { asImageMetadata } from '@/lib/images';
+import { gameUrl } from '@/lib/paths';
+import { GAME_STATUS, type GameWithPosts } from '@/lib/games';
+import { plural, relativeTime } from '@/lib/site';
+
+interface Props {
+  item: GameWithPosts;
+  now?: Date;
+}
+
+const { item, now = new Date() } = Astro.props;
+const { game, posts, latest, cover } = item;
+const { title, description, genre, developer, status } = game.data;
+
+const statusLabel = GAME_STATUS[status] ?? status;
+const countLabel = `${posts.length} ${plural(posts.length, 'новость', 'новости', 'новостей')}`;
+const meta = [genre, developer].filter(Boolean).join(' · ');
+---
+
+<article class="game-card">
+  <a class="game-card__media" href={gameUrl(game.id)} tabindex="-1" aria-hidden="true">
+    {
+      cover ? (
+        <Image
+          src={asImageMetadata(cover)}
+          widths={[320, 640]}
+          sizes="(max-width: 700px) 100vw, 360px"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span class="game-card__initial">{title.charAt(0)}</span>
+      )
+    }
+  </a>
+
+  <div class="game-card__body">
+    <div class="game-card__meta">
+      <span class:list={['game-card__status', `is-${status}`]}>{statusLabel}</span>
+      {meta && <span class="game-card__genre">{meta}</span>}
+    </div>
+
+    <h2 class="game-card__title">
+      <a href={gameUrl(game.id)}>{title}</a>
+    </h2>
+
+    <p class="game-card__desc">{description}</p>
+
+    <p class="game-card__count">
+      {countLabel}
+      {latest && <span> · последняя {relativeTime(latest, now)}</span>}
+    </p>
+  </div>
+</article>

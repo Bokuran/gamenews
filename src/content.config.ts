@@ -14,6 +14,16 @@ const newsType = z.enum([
   'review', // обзоры и превью
 ]);
 
+/**
+ * Стадия проекта. Влияет только на подпись в карточке игры.
+ */
+const gameStatus = z.enum([
+  'released', // вышла
+  'early-access', // ранний доступ
+  'announced', // анонсирована
+  'remaster', // переиздание или ремастер
+]);
+
 const news = defineCollection({
   loader: glob({
     pattern: '**/[^_]*.{md,mdx}',
@@ -50,4 +60,49 @@ const news = defineCollection({
     }),
 });
 
-export const collections = { news };
+/**
+ * Карточка игры. Заводится вручную, когда о проекте выходит первая новость.
+ * Новости подтягиваются автоматически по совпадению тегов с `aliases`.
+ */
+const games = defineCollection({
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx}',
+    base: './src/content/games',
+  }),
+
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().min(2).max(80),
+
+      // Теги новостей, которые относятся к этой игре. Заголовок игры
+      // участвует в сопоставлении всегда, здесь — только отличия:
+      // «Onimusha» для «Onimusha 3», «Shrek» для «Shrek 2».
+      aliases: z.array(z.string().min(1)).max(8).default([]),
+
+      description: z
+        .string()
+        .min(40, 'Описание показывается в карточке и в поиске')
+        .max(200, 'Длиннее 200 символов обрезается в карточке'),
+
+      developer: z.string().optional(),
+      publisher: z.string().optional(),
+      genre: z.string().optional(),
+      platforms: z.array(z.string()).default([]),
+
+      // Свободный текст: точная дата есть не у всех проектов.
+      release: z.string().optional(),
+      status: gameStatus.default('released'),
+
+      cover: image().optional(),
+      links: z
+        .object({
+          site: z.string().url().optional(),
+          steam: z.string().url().optional(),
+        })
+        .default({}),
+
+      draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { news, games };

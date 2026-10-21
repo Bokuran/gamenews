@@ -29,6 +29,10 @@ export function tagUrl(tag: string): string {
   return url(`/tags/${encodeURIComponent(tag)}`);
 }
 
+export function gameUrl(slug: string): string {
+  return url(`/games/${slug}`);
+}
+
 /** Первая страница намеренно ведёт на /news, а не на /news/page/1 */
 export function pageUrl(page: number): string {
   return page <= 1 ? url('/news') : url(`/news/page/${page}`);

@@ -3,7 +3,7 @@ title: "Tencent представила Ordinary Oddness — RPG с мифиче�
 description: "Дочерняя студия Tencent COSMICPUP выпустила дебютный проект: динамичную RPG с открытым миром, где люди соседствуют с мифами."
 date: 2026-10-21T04:12:41.000Z
 type: announce
-tags: ["Tencent", "RPG", "Unreal Engine 5", "открытый мир"]
+tags: ["Ordinary Oddness", "Tencent", "RPG", "Unreal Engine 5", "открытый мир"]
 source: "https://stopgame.ru/newsdata/73244/tencent_anonsirovala_ordinary_oddness_neobychnuyu_rpg_s_otkrytym_mirom"
 sourceName: "Stopgame"
 image: ../../img/news/ordinary-oddness.jpg
