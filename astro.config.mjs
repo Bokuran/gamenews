@@ -7,7 +7,20 @@ import { fileURLToPath, URL } from 'node:url';
 // В CI эти значения подставляет deploy.yml из github context, дефолты ниже —
 // чтобы локальная сборка совпадала с боевой. Для user-site (bokuran.github.io)
 // нужен SITE_BASE='/'.
-const site = process.env.SITE_URL ?? 'https://bokuran.github.io';
+//
+// Хост приводим к нижнему регистру: github.repository_owner отдаёт логин
+// как в профиле («Bokuran»), а sitemap нормализует hostname сам. Без этого
+// canonical/og:url расходятся с <loc> из sitemap — Google видит два разных хоста.
+function normalizeOrigin(value, fallback) {
+  try {
+    // .origin уже содержит протокол, хост в нижнем регистре и порт, если он есть.
+    return new URL(value || fallback).origin.toLowerCase();
+  } catch {
+    return fallback;
+  }
+}
+
+const site = normalizeOrigin(process.env.SITE_URL, 'https://bokuran.github.io');
 const base = process.env.SITE_BASE ?? '/gamenews';
 
 export default defineConfig({
