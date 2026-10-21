@@ -6,7 +6,7 @@ publisher: "Неизвестно"
 genre: "Хоррор, Приключение"
 platforms: ["Xbox Series X|S", "ПК"]
 release: "Октябрь 2026"
-status: upcoming
+status: announced
 aliases: ["Séance of Blake Manor", "Blake Manor"]
 cover: ../../img/games/the-seance-of-blake-manor/cover.svg
 banner: ../../img/games/the-seance-of-blake-manor/banner.svg

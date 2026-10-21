@@ -6,7 +6,7 @@ publisher: "Неизвестно"
 genre: "Экшен"
 platforms: ["Xbox Series X|S", "ПК"]
 release: "Октябрь 2026"
-status: upcoming
+status: announced
 aliases: []
 cover: ../../img/games/mouthwash/cover.svg
 banner: ../../img/games/mouthwash/banner.svg
