@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600" viewBox="0 0 1920 600">
+  <rect width="1920" height="600" fill="#4fc3f7"/>
+  <rect x="60" y="60" width="1800" height="480" fill="#81d4fa" stroke="#29b6f6" stroke-width="4" rx="20"/>
+  
+  <text x="960" y="200" text-anchor="middle" fill="#01579b" font-family="Arial, sans-serif" font-size="64" font-weight="bold">
+    Mouthwash
+  </text>
+  
+  <text x="960" y="280" text-anchor="middle" fill="#0277bd" font-family="Arial, sans-serif" font-size="36">
+    Экшен, где гигиена полости рта = суперсила
+  </text>
+  
+  <text x="960" y="360" text-anchor="middle" fill="#0288d1" font-family="Arial, sans-serif" font-size="28">
+    В Xbox Game Pass • Октябрь 2026
+  </text>
+  
+  <!-- Декоративные элементы: зубные щетки -->
+  <rect x="700" y="450" width="80" height="15" fill="#e0e0e0" rx="7"/>
+  <rect x="720" y="435" width="40" height="30" fill="#42a5f5"/>
+  
+  <rect x="1140" y="450" width="80" height="15" fill="#e0e0e0" rx="7"/>
+  <rect x="1160" y="435" width="40" height="30" fill="#42a5f5"/>
+  
+  <text x="960" y="520" text-anchor="middle" fill="#0277bd" font-family="Arial, sans-serif" font-size="18">
+    Banner placeholder • Replace with real image
+  </text>
+</svg>

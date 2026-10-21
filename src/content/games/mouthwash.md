@@ -8,8 +8,8 @@ platforms: ["Xbox Series X|S", "ПК"]
 release: "Октябрь 2026"
 status: upcoming
 aliases: []
-cover: ../../img/games/mouthwash/cover.jpg
-banner: ../../img/games/mouthwash/banner.jpg
+cover: ../../img/games/mouthwash/cover.svg
+banner: ../../img/games/mouthwash/banner.svg
 draft: false
 ---
 

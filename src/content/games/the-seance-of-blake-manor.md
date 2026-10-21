@@ -8,8 +8,8 @@ platforms: ["Xbox Series X|S", "ПК"]
 release: "Октябрь 2026"
 status: upcoming
 aliases: ["Séance of Blake Manor", "Blake Manor"]
-cover: ../../img/games/the-seance-of-blake-manor/cover.jpg
-banner: ../../img/games/the-seance-of-blake-manor/banner.jpg
+cover: ../../img/games/the-seance-of-blake-manor/cover.svg
+banner: ../../img/games/the-seance-of-blake-manor/banner.svg
 draft: false
 ---
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="600" viewBox="0 0 1920 600">
+  <rect width="1920" height="600" fill="#1a237e"/>
+  <rect x="60" y="60" width="1800" height="480" fill="#283593" stroke="#5c6bc0" stroke-width="4" rx="20"/>
+  
+  <text x="960" y="200" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="64" font-weight="bold">
+    Dragon Quest Smash/Grow
+  </text>
+  
+  <text x="960" y="280" text-anchor="middle" fill="#c5cae9" font-family="Arial, sans-serif" font-size="36">
+    Мобильная игра • Square Enix
+  </text>
+  
+  <text x="960" y="360" text-anchor="middle" fill="#e8eaf6" font-family="Arial, sans-serif" font-size="28">
+    Кроссовер с Dragon Quest IV до 15 декабря 2026
+  </text>
+  
+  <!-- Декоративные элементы -->
+  <circle cx="400" cy="450" r="40" fill="#ffd600"/>
+  <circle cx="1520" cy="450" r="40" fill="#ffd600"/>
+  <path d="M380 430 L420 430 L420 470 L380 470 Z" fill="#ff6f00"/>
+  <path d="M1500 430 L1540 430 L1540 470 L1500 470 Z" fill="#ff6f00"/>
+  
+  <text x="960" y="520" text-anchor="middle" fill="#9fa8da" font-family="Arial, sans-serif" font-size="18">
+    Banner placeholder • Replace with real image
+  </text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1a237e"/>
+  <rect x="50" y="50" width="1100" height="530" fill="#283593" stroke="#5c6bc0" stroke-width="4" rx="20"/>
+  
+  <text x="600" y="200" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="48" font-weight="bold">
+    Dragon Quest Smash/Grow
+  </text>
+  
+  <text x="600" y="280" text-anchor="middle" fill="#c5cae9" font-family="Arial, sans-serif" font-size="32">
+    Кроссовер с Dragon Quest IV
+  </text>
+  
+  <text x="600" y="360" text-anchor="middle" fill="#e8eaf6" font-family="Arial, sans-serif" font-size="24">
+    До 15 декабря 2026
+  </text>
+  
+  <text x="600" y="500" text-anchor="middle" fill="#9fa8da" font-family="Arial, sans-serif" font-size="18">
+    Изображение-заглушка • Замените на реальное изображение
+  </text>
+  
+  <!-- Простой логотип Dragon Quest -->
+  <circle cx="600" cy="420" r="40" fill="#ffd600"/>
+  <path d="M590 410 L610 410 L610 430 L590 430 Z" fill="#ff6f00"/>
+  <circle cx="590" cy="415" r="5" fill="#fff"/>
+  <circle cx="610" cy="425" r="5" fill="#fff"/>
+</svg>

@@ -6,7 +6,7 @@ type: announce
 tags: ["Action Adventure","Game Pass","Horror","Xbox","Subscription"]
 source: "https://www.eurogamer.net/xbox-game-pass-list-october-2026"
 sourceName: "Eurogamer News"
-image: ../../../img/news/here-s-our-second-wave-of-xbox-game-pass-games-for-october-2026/xbox-game-pass-october-2026.jpg
+image: ../../../img/news/here-s-our-second-wave-of-xbox-game-pass-games-for-october-2026/xbox-game-pass-october-2026.svg
 imageCredit: "Microsoft / Xbox"
 draft: false
 featured: false
