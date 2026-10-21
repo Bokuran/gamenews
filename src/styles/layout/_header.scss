@@ -9,15 +9,25 @@
   border-bottom: 1px solid var(--border);
 
   &__inner {
-    display: flex;
+    display: grid;
+    // Поиск должен стоять ровно по центру контейнера, поэтому боковые
+    // колонки одинаковой ширины (1fr), а не «сколько останется».
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: 'logo search nav';
     align-items: center;
-    justify-content: space-between;
     gap: var(--gap);
     padding-top: 14px;
     padding-bottom: 14px;
+
+    > .search {
+      grid-area: search;
+      justify-self: center;
+    }
   }
 
   &__logo {
+    grid-area: logo;
+    justify-self: start;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -25,6 +35,11 @@
     font-size: 18px;
     letter-spacing: -0.01em;
     color: var(--text);
+  }
+
+  &__nav {
+    grid-area: nav;
+    justify-self: end;
   }
 
   &__logo-mark {
@@ -57,15 +72,38 @@
     }
   }
 
-  @include respond-to('small') {
-    &__inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+  // Между 768 и 992 поиск в 420px не помещается рядом с навигацией,
+  // поэтому сужаем его и уплотняем ссылки.
+  @include respond-to('large') {
+    &__inner > .search {
+      max-width: 300px;
     }
 
+    &__link {
+      padding: 8px 10px;
+    }
+  }
+
+  @include respond-to('medium') {
+    &__inner {
+      // Логотип и навигация в одну строку, поиск — во всю ширину под ними.
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'logo nav'
+        'search search';
+      row-gap: 12px;
+
+      > .search {
+        justify-self: stretch;
+        max-width: none;
+      }
+    }
+  }
+
+  @include respond-to('small') {
     &__list {
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
   }
 }

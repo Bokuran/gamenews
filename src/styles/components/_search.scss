@@ -1,0 +1,137 @@
+@use '@/styles/abstracts' as *;
+
+// Поле поиска в шапке + выпадашка с результатами.
+// Позиционирование (по центру header__inner) задаётся в layout/_header.scss.
+.search {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+
+    &:focus-within {
+      border-color: color-mix(in srgb, var(--color-orange) 55%, var(--border));
+      background: var(--bg-elevated);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--text-faint);
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+
+    &::placeholder {
+      color: var(--text-faint);
+    }
+
+    // Нативная кнопка очистки у type="search" выглядит чужеродно в тёмной теме.
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+
+  &__results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    max-height: min(70vh, 460px);
+    margin: 0;
+    padding: 6px;
+    overflow-y: auto;
+    list-style: none;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-elevated);
+    box-shadow: 0 18px 40px rgb(0 0 0 / 45%);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__item {
+    a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: var(--text);
+    }
+
+    &.is-active a {
+      background: var(--bg-hover);
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  &__badge {
+    padding: 2px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-orange-2);
+    background: color-mix(in srgb, var(--color-orange) 18%, transparent);
+  }
+
+  &__item-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  &__item-desc {
+    display: -webkit-box;
+    margin-top: 4px;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-muted);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  &__status {
+    padding: 14px 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  mark {
+    padding: 0 2px;
+    border-radius: 3px;
+    color: inherit;
+    background: color-mix(in srgb, var(--color-orange) 32%, transparent);
+  }
+}

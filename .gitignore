@@ -16,6 +16,8 @@ dist-ssr
 .astro/
 # Логи сборщика новостей, если включишь перенаправление вывода
 news-collector.log
+# Вывод dev-сервера при перенаправлении stderr
+dev.err
 
 # Editor directories and files
 .vscode/*

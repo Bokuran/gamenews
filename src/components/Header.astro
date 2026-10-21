@@ -1,6 +1,7 @@
 ---
 import { url } from '@/lib/paths';
 import { SITE_NAME } from '@/lib/site';
+import SearchBox from '@/components/SearchBox.astro';
 
 const links = [
   { href: url('/'), label: 'Главная' },
@@ -24,6 +25,8 @@ function isActive(href: string): boolean {
       <span class="header__logo-mark" aria-hidden="true">▲</span>
       <span class="header__logo-text">{SITE_NAME}</span>
     </a>
+
+    <SearchBox />
 
     <nav class="header__nav" aria-label="Основная навигация">
       <ul class="header__list">

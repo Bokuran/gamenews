@@ -1,0 +1,270 @@
+---
+import { url } from '@/lib/paths';
+---
+
+<div class="search" data-search data-index={url('/search.json')}>
+  <div class="search__field">
+    <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+      <path d="M16.5 16.5 21 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <input
+      class="search__input"
+      type="search"
+      id="site-search"
+      placeholder="Поиск по новостям…"
+      autocomplete="off"
+      spellcheck="false"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="site-search-results"
+      aria-autocomplete="list"
+      aria-label="Поиск по новостям"
+    />
+  </div>
+  <ul class="search__results" id="site-search-results" role="listbox" aria-label="Результаты поиска" hidden></ul>
+</div>
+
+<script>
+  type Doc = { t: string; d: string; g: string; y: string; u: string; dt: string };
+  type Item = { li: HTMLLIElement; link: HTMLAnchorElement };
+
+  const boxes = document.querySelectorAll<HTMLElement>('[data-search]');
+
+  for (const box of boxes) {
+    const input = box.querySelector<HTMLInputElement>('.search__input');
+    const list = box.querySelector<HTMLUListElement>('.search__results');
+    const indexUrl = box.dataset.index;
+    if (!input || !list || !indexUrl) continue;
+
+    let docs: Doc[] | null = null;
+    let pending: Promise<Doc[]> | null = null;
+    let items: Item[] = [];
+    let active = -1;
+    let timer: number | undefined;
+
+    // ё и е в поиске должны считаться одной буквой — иначе «ёж» не найдёт «еж».
+    const norm = (value: string) => value.toLowerCase().replace(/ё/g, 'е');
+
+    /**
+     * Позиция токена в тексте или -1.
+     * Короткие токены ищем только с начала слова: иначе «еж» находится
+     * внутри «пережили», и выдача забивается мусором.
+     */
+    function findIndex(lower: string, token: string): number {
+      if (token.length >= 4) return lower.indexOf(token);
+
+      let index = lower.indexOf(token);
+      while (index !== -1) {
+        const before = index === 0 ? '' : lower[index - 1];
+        if (!/[a-zа-я0-9]/.test(before)) return index;
+        index = lower.indexOf(token, index + 1);
+      }
+      return -1;
+    }
+
+    const matches = (field: string, token: string) => findIndex(field, token) !== -1;
+
+    function load(): Promise<Doc[]> {
+      if (docs) return Promise.resolve(docs);
+      if (pending) return pending;
+      pending = fetch(indexUrl)
+        .then((response) => (response.ok ? response.json() : []))
+        .then((data: Doc[]) => (docs = data))
+        .catch(() => (docs = []));
+      return pending;
+    }
+
+    function open() {
+      list.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      list.hidden = true;
+      input.setAttribute('aria-expanded', 'false');
+      input.removeAttribute('aria-activedescendant');
+      active = -1;
+      items = [];
+    }
+
+    /** Подсветка первого совпадения — без innerHTML, чтобы не ловить XSS из фидов. */
+    function highlight(text: string, tokens: string[]): DocumentFragment {
+      const fragment = document.createDocumentFragment();
+      const lower = text.toLowerCase();
+
+      let hit: { index: number; length: number } | null = null;
+      for (const token of tokens) {
+        const index = findIndex(lower, token);
+        if (index === -1) continue;
+        if (!hit || index < hit.index) hit = { index, length: token.length };
+      }
+
+      if (!hit) {
+        fragment.append(text);
+        return fragment;
+      }
+
+      fragment.append(text.slice(0, hit.index));
+      const mark = document.createElement('mark');
+      mark.textContent = text.slice(hit.index, hit.index + hit.length);
+      fragment.append(mark);
+      fragment.append(text.slice(hit.index + hit.length));
+      return fragment;
+    }
+
+    /** Все токены должны найтись хотя бы в одном поле, иначе документ не подходит. */
+    function score(doc: Doc, tokens: string[]): number {
+      const title = norm(doc.t);
+      const tags = norm(doc.g);
+      const type = norm(doc.y);
+      const desc = norm(doc.d);
+
+      let total = 0;
+      for (const token of tokens) {
+        const inTitle = matches(title, token);
+        const inTags = matches(tags, token);
+        const inType = matches(type, token);
+        const inDesc = matches(desc, token);
+        if (!inTitle && !inTags && !inType && !inDesc) return 0;
+
+        total += (inTitle ? 4 : 0) + (inTags ? 3 : 0) + (inType ? 2 : 0) + (inDesc ? 1 : 0);
+        if (inTitle && title.startsWith(token)) total += 3;
+      }
+      return total;
+    }
+
+    function status(text: string) {
+      list.textContent = '';
+      const item = document.createElement('li');
+      item.className = 'search__status';
+      item.textContent = text;
+      list.append(item);
+      items = [];
+      active = -1;
+      open();
+    }
+
+    function render(query: string) {
+      const tokens = norm(query).split(/\s+/).filter((token) => token.length >= 2);
+      if (!tokens.length) {
+        close();
+        return;
+      }
+      if (!docs) return;
+
+      const found = docs
+        .map((doc) => ({ doc, score: score(doc, tokens) }))
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score || b.doc.dt.localeCompare(a.doc.dt))
+        .slice(0, 8);
+
+      if (!found.length) {
+        status('Ничего не найдено');
+        return;
+      }
+
+      list.textContent = '';
+      items = [];
+      active = -1;
+
+      found.forEach(({ doc }, i) => {
+        const li = document.createElement('li');
+        li.className = 'search__item';
+        li.id = `search-option-${i}`;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', 'false');
+
+        const link = document.createElement('a');
+        link.href = doc.u;
+        link.tabIndex = -1;
+
+        const meta = document.createElement('div');
+        meta.className = 'search__meta';
+        const badge = document.createElement('span');
+        badge.className = 'search__badge';
+        badge.textContent = doc.y;
+        meta.append(badge);
+
+        const title = document.createElement('div');
+        title.className = 'search__item-title';
+        title.append(highlight(doc.t, tokens));
+
+        const desc = document.createElement('p');
+        desc.className = 'search__item-desc';
+        desc.append(highlight(doc.d, tokens));
+
+        link.append(meta, title, desc);
+        li.append(link);
+        list.append(li);
+        items.push({ li, link });
+      });
+
+      open();
+    }
+
+    function setActive(index: number) {
+      const previous = items[active];
+      if (previous) {
+        previous.li.classList.remove('is-active');
+        previous.li.setAttribute('aria-selected', 'false');
+      }
+
+      active = index;
+      const current = items[active];
+      if (!current) {
+        input.removeAttribute('aria-activedescendant');
+        return;
+      }
+
+      current.li.classList.add('is-active');
+      current.li.setAttribute('aria-selected', 'true');
+      input.setAttribute('aria-activedescendant', current.li.id);
+      current.li.scrollIntoView({ block: 'nearest' });
+    }
+
+    input.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      if (!norm(input.value).trim()) {
+        close();
+        return;
+      }
+      // Небольшая задержка: не гоняем рендер на каждое нажатие.
+      timer = window.setTimeout(async () => {
+        await load();
+        render(input.value);
+      }, 120);
+    });
+
+    input.addEventListener('focus', () => {
+      load();
+      if (input.value.trim()) render(input.value);
+    });
+
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        close();
+        return;
+      }
+      if (list.hidden || !items.length) return;
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setActive((active + 1) % items.length);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        setActive((active - 1 + items.length) % items.length);
+      } else if (event.key === 'Enter') {
+        const target = items[active] ?? items[0];
+        if (!target) return;
+        event.preventDefault();
+        target.link.click();
+      }
+    });
+
+    // Клик мимо выпадашки закрывает её; фокус при этом не теряем.
+    document.addEventListener('click', (event) => {
+      if (!box.contains(event.target as Node)) close();
+    });
+  }
+</script>
