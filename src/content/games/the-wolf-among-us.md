@@ -7,7 +7,7 @@ platforms: ["PC", "PS5", "Xbox Series X|S"]
 release: "ремастер — 29 октября 2026"
 status: remaster
 aliases: ["The Wolf Among Us"]
-cover: ../../img/news/wolf-among-us-remastered.jpg
+cover: ../../img/games/the-wolf-among-us/cover.jpg
 draft: false
 ---
 

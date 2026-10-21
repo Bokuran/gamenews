@@ -3,6 +3,15 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 export type NewsPost = CollectionEntry<'news'>;
 
 /**
+ * Новости лежат в папках по названию игры, поэтому `post.id` выглядит как
+ * «subnautica-2/subnautica-2-early-access-2-0». В URL идёт только имя файла —
+ * так адреса статей не меняются при перекладывании папок.
+ */
+export function postSlug(id: string): string {
+  return id.split('/').pop() ?? id;
+}
+
+/**
  * Все опубликованные новости, свежие первыми.
  * Сортировка по дате, затем по id — чтобы порядок был детерминированным
  * при одинаковых метках времени (бывает при пакетной генерации черновиков).

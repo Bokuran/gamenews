@@ -7,7 +7,7 @@ platforms: ["PC", "консоли"]
 release: "не объявлена"
 status: announced
 aliases: ["Onimusha"]
-cover: ../../img/news/onimusha-3-remaster.jpg
+cover: ../../img/games/onimusha-3/cover.jpg
 draft: false
 ---
 

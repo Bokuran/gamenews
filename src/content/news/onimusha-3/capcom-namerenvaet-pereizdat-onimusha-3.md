@@ -6,7 +6,7 @@ type: rumor
 tags: ["Onimusha", "Capcom", "ремастер"]
 source: "https://www.pcgamer.com/games/action/after-talking-to-capcom-im-a-lot-more-optimistic-about-onimusha-3-getting-a-remaster/"
 sourceName: "PC Gamer"
-image: ../../img/news/onimusha-3-remaster.jpg
+image: ../../../img/news/onimusha-3/onimusha-3-remaster.jpg
 imageCredit: "Capcom"
 draft: false
 featured: false

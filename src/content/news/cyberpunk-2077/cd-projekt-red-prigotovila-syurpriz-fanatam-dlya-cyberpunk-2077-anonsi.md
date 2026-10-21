@@ -6,7 +6,7 @@ type: patch
 tags: ["Cyberpunk 2077", "обновление", "Edgerunners", "CD Projekt RED"]
 source: "https://www.playground.ru/cyberpunk_2077/news/cd_projekt_red_prigotovila_syurpriz_fanatam_dlya_cyberpunk_2077_anonsirovali_obnovlenie_2_5_po_motivam_edgerunners_2-1883262"
 sourceName: "PlayGround.ru"
-image: ../../img/news/cyberpunk-25-edgerunners.png
+image: ../../../img/news/cyberpunk-2077/cyberpunk-25-edgerunners.png
 imageCredit: "CD Projekt RED"
 draft: false
 featured: false

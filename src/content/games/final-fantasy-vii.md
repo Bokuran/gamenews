@@ -7,7 +7,7 @@ platforms: ["PC", "PS5", "Xbox Series X|S"]
 release: "оригинал — 1997; Intergrade в Game Pass — 29 октября 2026"
 status: released
 aliases: ["Final Fantasy"]
-cover: ../../img/news/game-pass-october-wave2.jpg
+cover: ../../img/games/final-fantasy-vii/cover.jpg
 draft: false
 ---
 

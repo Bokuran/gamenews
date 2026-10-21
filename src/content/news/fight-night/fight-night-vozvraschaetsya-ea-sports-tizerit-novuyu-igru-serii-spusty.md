@@ -6,7 +6,7 @@ type: announce
 tags: ["Fight Night", "EA Sports", "бокс", "тизер"]
 source: "https://www.igromania.ru/news/169391/fight-night-vozvraschaetsya-ea-sports-tizerit-novuyu-igru-serii-spustya-15-let/"
 sourceName: "Игромания"
-image: ../../img/news/fight-night-ea.jpg
+image: ../../../img/news/fight-night/fight-night-ea.jpg
 imageCredit: "EA Sports"
 draft: false
 featured: false

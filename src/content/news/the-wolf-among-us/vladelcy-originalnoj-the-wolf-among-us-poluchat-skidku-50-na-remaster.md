@@ -6,7 +6,7 @@ type: announce
 tags: ["The Wolf Among Us", "Telltale", "скидки", "ремастер"]
 source: "https://stopgame.ru/newsdata/73241/vladelcy_originalnoy_the_wolf_among_us_poluchat_skidku_50_na_remaster"
 sourceName: "Stopgame"
-image: ../../img/news/wolf-among-us-discount.jpg
+image: ../../../img/news/the-wolf-among-us/wolf-among-us-discount.jpg
 imageCredit: "Telltale / Stopgame"
 draft: false
 featured: false

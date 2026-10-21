@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { asImageMetadata } from '@/lib/images';
 import { newsUrl, tagUrl } from '@/lib/paths';
+import { postSlug } from '@/lib/posts';
 import { NEWS_TYPES, relativeTime } from '@/lib/site';
 import type { CollectionEntry } from 'astro:content';
 
@@ -19,12 +20,13 @@ const { title, description, date, type, tags, source, sourceName, image, updated
 const Heading = headingLevel;
 const published = updated ?? date;
 const typeLabel = NEWS_TYPES[type] ?? type;
+const href = newsUrl(postSlug(post.id));
 ---
 
 <article class="news-card">
   {
     showImage && image && (
-      <a class="news-card__media" href={newsUrl(post.id)} tabindex={-1} aria-hidden="true">
+      <a class="news-card__media" href={href} tabindex={-1} aria-hidden="true">
         <Image
           src={asImageMetadata(image)}
           widths={[400, 800]}
@@ -46,7 +48,7 @@ const typeLabel = NEWS_TYPES[type] ?? type;
     </div>
 
     <Heading class="news-card__title">
-      <a href={newsUrl(post.id)}>{title}</a>
+      <a href={href}>{title}</a>
     </Heading>
 
     <p class="news-card__desc">{description}</p>

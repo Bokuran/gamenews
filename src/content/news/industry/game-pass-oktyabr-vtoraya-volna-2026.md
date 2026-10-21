@@ -6,7 +6,7 @@ type: release
 tags: ["Game Pass", "Xbox", "Final Fantasy", "подписки"]
 source: "https://stopgame.ru/newsdata/73238/game_pass_v_oktyabre_chast_2_final_fantasy_vii_intergrade_the_s_ance_of_blake_manor_plants_vs_zombies_replanted"
 sourceName: "Stopgame"
-image: ../../img/news/game-pass-october-wave2.jpg
+image: ../../../img/news/industry/game-pass-october-wave2.jpg
 imageCredit: "Xbox"
 draft: false
 featured: false

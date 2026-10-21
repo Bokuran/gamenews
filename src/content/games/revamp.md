@@ -6,7 +6,7 @@ genre: "Экшен-RPG"
 platforms: ["PC"]
 release: "не объявлена"
 status: announced
-cover: ../../img/news/revamp-dracula.png
+cover: ../../img/games/revamp/cover.jpg
 draft: false
 ---
 

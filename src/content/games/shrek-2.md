@@ -8,7 +8,7 @@ platforms: ["PC", "консоли"]
 release: "10 ноября 2026"
 status: remaster
 aliases: ["Shrek"]
-cover: ../../img/news/shrek-2-remastered.jpg
+cover: ../../img/games/shrek-2/cover.jpg
 draft: false
 ---
 

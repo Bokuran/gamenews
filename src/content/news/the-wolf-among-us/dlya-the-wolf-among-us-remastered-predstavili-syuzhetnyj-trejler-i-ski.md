@@ -6,7 +6,7 @@ type: announce
 tags: ["The Wolf Among Us", "ремастер", "Telltale", "Switch"]
 source: "https://www.igromania.ru/news/169394/dlya-the-wolf-among-us-remastered-predstavili-syuzhetnyj-trejler-i-skidochnyij-plan/"
 sourceName: "Игромания"
-image: ../../img/news/wolf-among-us-remastered.jpg
+image: ../../../img/news/the-wolf-among-us/wolf-among-us-remastered.jpg
 imageCredit: "Telltale"
 draft: false
 featured: false

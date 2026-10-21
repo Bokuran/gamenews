@@ -6,7 +6,7 @@ genre: "Бокс"
 platforms: ["консоли"]
 release: "не объявлена"
 status: announced
-cover: ../../img/news/fight-night-ea.jpg
+cover: ../../img/games/fight-night/cover.jpg
 draft: false
 ---
 

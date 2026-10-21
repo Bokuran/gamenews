@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getPublishedPosts } from '@/lib/posts';
+import { getPublishedPosts, postSlug } from '@/lib/posts';
 import { getGamesWithPosts } from '@/lib/games';
 import { gameUrl, newsUrl } from '@/lib/paths';
 import { NEWS_TYPES } from '@/lib/site';
@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
     d: post.data.description,
     g: post.data.tags.join(' '),
     y: NEWS_TYPES[post.data.type] ?? post.data.type,
-    u: newsUrl(post.id),
+    u: newsUrl(postSlug(post.id)),
     dt: post.data.date.toISOString(),
   }));
 

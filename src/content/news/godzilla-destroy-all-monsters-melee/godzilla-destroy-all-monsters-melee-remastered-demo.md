@@ -6,7 +6,7 @@ type: review
 tags: ["Godzilla", "ремастер", "Steam Next Fest", "файтинг"]
 source: "https://www.rockpapershotgun.com/the-demo-for-city-flattening-fighting-game-godzilla-destroy-all-monsters-melee-remastered-is-a-roaring-good-time-no-nostalgia-required"
 sourceName: "Rock Paper Shotgun"
-image: ../../img/news/godzilla-damm-remastered.jpg
+image: ../../../img/news/godzilla-destroy-all-monsters-melee/godzilla-damm-remastered.jpg
 imageCredit: "Pipeworks Software"
 draft: false
 featured: false

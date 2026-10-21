@@ -8,7 +8,7 @@ platforms: ["PC", "консоли"]
 release: "демо — Steam Next Fest"
 status: remaster
 aliases: ["Godzilla"]
-cover: ../../img/news/godzilla-damm-remastered.jpg
+cover: ../../img/games/godzilla-destroy-all-monsters-melee/cover.jpg
 draft: false
 ---
 

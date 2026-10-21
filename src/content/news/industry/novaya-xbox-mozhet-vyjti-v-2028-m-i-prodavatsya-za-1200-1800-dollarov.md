@@ -6,7 +6,7 @@ type: announce
 tags: ["Xbox", "Game Pass", "Project Helix", "консоли"]
 source: "https://www.igromania.ru/news/169390/novaya-xbox-mozhet-vyijti-v-2028-m-i-prodavatsya-za-1200-1800-dollarov-a-game-pass-izmenitsya-fortune/"
 sourceName: "Fortune / Игромания"
-image: ../../img/news/project-helix-xbox.jpg
+image: ../../../img/news/industry/project-helix-xbox.jpg
 imageCredit: "Fortune"
 draft: false
 featured: false

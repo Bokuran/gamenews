@@ -6,7 +6,7 @@ type: industry
 tags: ["ИИ", "озвучка", "право", "Япония"]
 source: "https://www.gamesindustry.biz/japan-actors-union-announces-guidelines-addressing-unauthorised-use-of-generative-ai-for-voice-acting"
 sourceName: "GamesIndustry.biz"
-image: ../../img/news/japan-voice-ai.jpg
+image: ../../../img/news/industry/japan-voice-ai.jpg
 imageCredit: "Ritupon Baishya / Unsplash"
 draft: false
 featured: false

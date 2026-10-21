@@ -6,7 +6,7 @@ publisher: "Activision"
 genre: "Шутер"
 platforms: ["PC", "PlayStation", "Xbox"]
 status: released
-cover: ../../img/news/cod-black-ops-rerelease.jpg
+cover: ../../img/games/call-of-duty/cover.jpg
 links:
   site: "https://www.callofduty.com/"
 draft: false

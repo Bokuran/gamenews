@@ -6,7 +6,7 @@ type: announce
 tags: ["Shrek", "ремастер", "retro"]
 source: "https://store.steampowered.com/news/group/1850/view/714541927145406485"
 sourceName: "GamesRadar+"
-image: ../../img/news/shrek-2-remastered.jpg
+image: ../../../img/news/shrek-2/shrek-2-remastered.jpg
 imageCredit: "GamesRadar+ / Future"
 draft: false
 featured: false

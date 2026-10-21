@@ -6,7 +6,7 @@ type: industry
 tags: ["Call of Duty", "Activision", "Treyarch", "индустрия"]
 source: "https://www.eurogamer.net/call-of-duty-black-ops-1-2-re-release-controversy"
 sourceName: "Eurogamer"
-image: ../../img/news/cod-black-ops-rerelease.jpg
+image: ../../../img/news/call-of-duty/cod-black-ops-rerelease.jpg
 imageCredit: "Activision"
 draft: false
 featured: false

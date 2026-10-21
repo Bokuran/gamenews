@@ -2,6 +2,7 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/site';
 import { absoluteUrl, newsUrl } from '@/lib/paths';
+import { postSlug } from '@/lib/posts';
 
 export async function GET() {
   const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
@@ -19,7 +20,7 @@ export async function GET() {
 
     items: posts.slice(0, 40).map((post) => ({
       title: post.data.title,
-      link: absoluteUrl(newsUrl(post.id)),
+      link: absoluteUrl(newsUrl(postSlug(post.id))),
       pubDate: post.data.updated ?? post.data.date,
       description: post.data.description,
       categories: post.data.tags,

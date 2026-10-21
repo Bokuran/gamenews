@@ -6,7 +6,7 @@ type: industry
 tags: ["Linux", "SteamOS", "Game Pass", "открытый код"]
 source: "https://www.pcgamer.com/software/microsoft-wont-like-this-open-source-project-to-get-game-pass-working-on-steamos-and-linux-but-i-think-its-pretty-neat/"
 sourceName: "PC Gamer"
-image: ../../img/news/xodus-nexus-linux.jpg
+image: ../../../img/news/industry/xodus-nexus-linux.jpg
 imageCredit: "Microsoft"
 draft: false
 featured: false

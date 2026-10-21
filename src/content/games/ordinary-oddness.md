@@ -7,7 +7,7 @@ genre: "RPG, открытый мир"
 platforms: ["PC", "консоли"]
 release: "не объявлена"
 status: announced
-cover: ../../img/news/ordinary-oddness.jpg
+cover: ../../img/games/ordinary-oddness/cover.jpg
 draft: false
 ---
 

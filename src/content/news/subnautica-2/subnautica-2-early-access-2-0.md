@@ -6,7 +6,7 @@ type: patch
 tags: ["Subnautica 2", "ранний доступ", "Unknown Worlds"]
 source: "https://www.pcgamer.com/games/survival-crafting/subnautica-2-is-heading-for-early-access-2-0-which-brings-one-of-our-scariest-regions-weve-ever-done/"
 sourceName: "PC Gamer"
-image: ../../img/news/subnautica-2-ea2.jpg
+image: ../../../img/news/subnautica-2/subnautica-2-ea2.jpg
 imageCredit: "Unknown Worlds"
 draft: false
 featured: false

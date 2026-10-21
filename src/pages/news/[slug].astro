@@ -5,12 +5,13 @@ import { asImageMetadata } from '@/lib/images';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import NewsCard from '@/components/NewsCard.astro';
 import { absoluteUrl, newsUrl, tagUrl } from '@/lib/paths';
+import { postSlug } from '@/lib/posts';
 import { SITE_NAME, NEWS_TYPES, formatDateTime, formatDate } from '@/lib/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('news', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: postSlug(post.id) },
     props: { post },
   }));
 }
@@ -30,7 +31,7 @@ const {
 } = post.data;
 
 const { Content } = await render(post);
-const canonical = newsUrl(post.id);
+const canonical = newsUrl(postSlug(post.id));
 const published = updated ?? date;
 
 // Релевантные материалы: максимум пересечений по тегам, без самой записи.

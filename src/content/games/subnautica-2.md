@@ -7,7 +7,7 @@ genre: "Выживание"
 platforms: ["PC", "Xbox Series X|S"]
 release: "ранний доступ с мая 2026"
 status: early-access
-cover: ../../img/news/subnautica-2-ea2.jpg
+cover: ../../img/games/subnautica-2/cover.jpg
 links:
   site: "https://unknownworlds.com/subnautica/"
 draft: false

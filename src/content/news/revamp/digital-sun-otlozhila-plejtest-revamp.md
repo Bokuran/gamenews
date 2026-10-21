@@ -6,7 +6,7 @@ type: delay
 tags: ["Digital Sun", "ReVamp", "ИИ", "инди"]
 source: "https://www.eurogamer.net/moonlighter-dev-steam-playtest-revamp-ai-copycats"
 sourceName: "Eurogamer"
-image: ../../img/news/revamp-dracula.png
+image: ../../../img/news/revamp/revamp-dracula.png
 imageCredit: "Digital Sun"
 draft: false
 featured: false

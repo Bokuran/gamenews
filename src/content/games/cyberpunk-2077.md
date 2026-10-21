@@ -6,7 +6,7 @@ genre: "RPG"
 platforms: ["PC", "PS5", "Xbox Series X|S"]
 release: "10 декабря 2020"
 status: released
-cover: ../../img/news/cyberpunk-25-edgerunners.png
+cover: ../../img/games/cyberpunk-2077/cover.jpg
 links:
   site: "https://www.cyberpunk.net/"
 draft: false
