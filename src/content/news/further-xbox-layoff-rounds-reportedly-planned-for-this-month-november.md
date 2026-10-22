@@ -7,6 +7,8 @@ type: industry
 tags: ["Xbox", "Microsoft", "Game Pass", "Лейоффы", "Бизнес"]
 source: "https://www.rockpapershotgun.com/further-xbox-layoff-rounds-reportedly-planned-for-this-month-november-and-january-while-a-game-pass-overhaul-is-in-the-works"
 sourceName: "Rock Paper Shotgun"
+image: ../../img/news/further-xbox-layoff-rounds-reportedly-planned-for-this-month-november/further-xbox-layoff-rounds-reportedly-planned-for-this-month-november.svg
+imageCredit: "Rock Paper Shotgun"
 draft: false
 featured: false
 ---

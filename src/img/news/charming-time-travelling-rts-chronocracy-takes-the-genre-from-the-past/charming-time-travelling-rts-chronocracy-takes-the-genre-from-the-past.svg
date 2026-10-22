@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <rect width="1000" height="1000" fill="hsl(220, 30%, 18%)"/>
+  <text x="500" y="500" text-anchor="middle" dominant-baseline="central"
+        fill="hsl(220, 40%, 55%)" font-family="system-ui, sans-serif" font-size="45">charming time travelling</text>
+</svg>

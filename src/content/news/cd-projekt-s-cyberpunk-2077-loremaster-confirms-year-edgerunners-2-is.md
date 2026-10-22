@@ -7,6 +7,8 @@ type: announce
 tags: ["Cyberpunk 2077", "Edgerunners", "CD Projekt Red", "Аниме"]
 source: "https://store.steampowered.com/news/group/9869/view/705534727891716353"
 sourceName: "Steam News Hub"
+image: ../../img/news/cd-projekt-s-cyberpunk-2077-loremaster-confirms-year-edgerunners-2-is/cd-projekt-s-cyberpunk-2077-loremaster-confirms-year-edgerunners-2-is.jpg
+imageCredit: "CD PROJEKT RED"
 draft: false
 featured: false
 ---

@@ -7,6 +7,8 @@ type: announce
 tags: ["Project Zomboid", "Моддинг", "Java", "Выживание", "Инди"]
 source: "https://store.steampowered.com/news/app/108600/view/672883630592229814"
 sourceName: "Steam News Hub"
+image: ../../img/news/a-note-on-java-mods-and-modding/a-note-on-java-mods-and-modding.jpg
+imageCredit: "The Indie Stone"
 draft: false
 featured: false
 ---

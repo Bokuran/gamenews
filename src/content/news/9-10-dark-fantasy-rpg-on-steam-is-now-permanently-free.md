@@ -7,6 +7,8 @@ type: release
 tags: ["Heavy Wake", "RPG", "Deckbuilding", "Free to Play", "Тёмное фэнтези"]
 source: "https://store.steampowered.com/news/group/1450625/view/714541927145407008"
 sourceName: "Steam News Hub"
+image: ../../img/news/9-10-dark-fantasy-rpg-on-steam-is-now-permanently-free/9-10-dark-fantasy-rpg-on-steam-is-now-permanently-free.jpg
+imageCredit: "Cold and Wet Studios"
 draft: false
 featured: false
 ---

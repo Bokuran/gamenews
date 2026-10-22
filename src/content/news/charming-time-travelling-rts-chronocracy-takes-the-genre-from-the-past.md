@@ -7,6 +7,8 @@ type: announce
 tags: ["Chronocracy", "RTS", "Инди", "Steam"]
 source: "https://store.steampowered.com/news/group/25563497/view/715667827053299990"
 sourceName: "Steam News Hub"
+image: ../../img/news/charming-time-travelling-rts-chronocracy-takes-the-genre-from-the-past/charming-time-travelling-rts-chronocracy-takes-the-genre-from-the-past.svg
+imageCredit: "Big Boss Battle"
 draft: false
 featured: false
 ---
